@@ -1,0 +1,19 @@
+html {
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    font-family: 'Montserrat';
+}
+
+h1 {
+    text-align: center;
+    padding: 2%;
+}
+
+#project_list {
+    padding: 5%;
+}

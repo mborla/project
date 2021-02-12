@@ -1,0 +1,132 @@
+svg.plutchik {
+  width: 100%;
+  height: 100%;
+}
+svg.plutchik text {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 9.5pt;
+  text-anchor: middle;
+  fill: #000;
+  font-weight: 400;
+}
+svg.plutchik #ecstasy {
+  fill: #ffcd1a;
+}
+svg.plutchik #joy {
+  fill: #ffde66;
+}
+svg.plutchik #serenity {
+  fill: #ffe999;
+}
+svg.plutchik #love {
+  fill: #f0f9c7;
+}
+svg.plutchik #admiration {
+  fill: #85ff1a;
+}
+svg.plutchik #trust {
+  fill: #adff66;
+}
+svg.plutchik #acceptance {
+  fill: #c9ff99;
+}
+svg.plutchik #submission {
+  fill: #deffda;
+}
+svg.plutchik #terror {
+  fill: #1aff5b;
+}
+svg.plutchik #fear {
+  fill: #66ff91;
+}
+svg.plutchik #apprehension {
+  fill: #99ffb6;
+}
+svg.plutchik #awe {
+  fill: #cbfeec;
+}
+svg.plutchik #amazement {
+  fill: #1af7ff;
+}
+svg.plutchik #surprise {
+  fill: #66faff;
+}
+svg.plutchik #distraction {
+  fill: #99fcff;
+}
+svg.plutchik #disapproval {
+  fill: #cceaff;
+}
+svg.plutchik #grief {
+  fill: #1a4bff;
+}
+svg.plutchik #sadness {
+  fill: #6687ff;
+}
+svg.plutchik #pensiveness {
+  fill: #99afff;
+}
+svg.plutchik #emorse {
+  fill: #ded7ff;
+}
+svg.plutchik #loathing {
+  fill: #941aff;
+}
+svg.plutchik #disgust {
+  fill: #b866ff;
+}
+svg.plutchik #boredom {
+  fill: #cf99ff;
+}
+svg.plutchik #contempt {
+  fill: #f2c6f7;
+}
+svg.plutchik #rage {
+  fill: #ff211a;
+}
+svg.plutchik #anger {
+  fill: #ff6b66;
+}
+svg.plutchik #annoyance {
+  fill: #ff9c99;
+}
+svg.plutchik  #aggressiveness {
+  fill: #ffdbce;
+}
+svg.plutchik #vigilance {
+  fill: #ff941a;
+}
+svg.plutchik #anticipation {
+  fill: #ffaa66;
+}
+svg.plutchik #interest {
+  fill: #ffc199;
+}
+svg.plutchik #optimistm {
+  fill: #ffeecc;
+}
+
+svg.plutchik a textPath {
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+#model g{
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.secondary_text, .tertiary_text{
+    font-size: 4px;
+}
+
+svg.plutchik{
+    overflow: visible;
+}
+
