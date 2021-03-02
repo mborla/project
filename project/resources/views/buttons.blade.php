@@ -33,8 +33,11 @@
         <div class="col" id="col_previous">
             <form action="/previous/{{ $id }}" method="GET">
                 {{ csrf_field() }}
+
                 <input type="checkbox" name="previous" id="previous" value="previous">
                 <button id="btn_previous" for="previous" type="submit" class="btn btn-success btn-block btn-sm">Previous</button>
+
+
             </form>
         </div>
         <div class="col" id="col_next">

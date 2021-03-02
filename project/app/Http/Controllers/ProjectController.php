@@ -14,7 +14,8 @@ class ProjectController extends Controller
 
     public function __construct()
     {
-        $this->config = include('..\config.php');
+        //$this->config = include('..\config.php');
+        $this->config = json_decode(file_get_contents('..\config.json'), true);
     }
 
     /**
@@ -25,6 +26,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request) // inserimento di un nuovo progetto
     {
+        $validated = $request->validate([
+            'project_name' => 'required|unique:projects,name',
+            'model' => 'nullable',
+            'users.*' => 'required|exists:users,name|min:'.$this->config['num_annotators'],
+            'dataset' => 'required'
+        ]);
+
         $project_name = $request->project_name;
         $users = $request->users;
         $model = $request->model;
@@ -36,8 +44,9 @@ class ProjectController extends Controller
 
         // modifico il file di configurazione
         $this->config['grammar']['model']['name'] = $model;
-        $this->config = '<?php return ' . var_export($this->config, true) . ';';
-        file_put_contents(config_path('..\config.php'), $this->config);
+        $json = $this->config;
+        file_put_contents(config_path('..\config.json'), json_encode($json, JSON_PRETTY_PRINT));
+
 
         // inserimento del nuovo progetto
         DB::insert('INSERT INTO projects(name, model) VALUES (?, ?)', [$project_name, $model]);
@@ -141,12 +150,6 @@ class ProjectController extends Controller
                 $shuffled = $tweets->shuffle();
 
                 foreach ($shuffled as $tweet){
-                    //ridonadante
-                    /*$tweet = DB::table('tweets')
-                                ->select('id')
-                                ->where('id_project', $id_project->id)
-                                ->where('id', $tweet)
-                                ->first();*/
 
                     DB::table('tweet_user')
                         ->insert([

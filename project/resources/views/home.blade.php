@@ -18,7 +18,7 @@
 </head>
 <body>
     @php
-        $config = include('..\config.php');   // file di configurazione
+        $config = json_decode(file_get_contents('..\config.json'), true);   // file di configurazione
     @endphp
 
     <div class="container-fluid">

@@ -1,0 +1,116 @@
+{
+    "user": "Marta",
+    "num_tweet": 1000,
+    "num_annotators": 1,
+    "num_annotation": 1,
+    "layout": {
+        "col_1": {
+            "model": {
+                "width": "50%",
+                "float": "left",
+                "margin-left": "none",
+                "margin-right": "none"
+            }
+        },
+        "col_2": {
+            "tweet": {
+                "width": "50%",
+                "float": "right",
+                "margin-left": "none",
+                "margin-right": "none"
+            },
+            "buttons": {
+                "width": "50%",
+                "float": "right",
+                "margin-left": "none",
+                "margin-right": "none"
+            }
+        }
+    },
+    "list_previous_tweets": "true",
+    "images": {
+        "flag": "false",
+        "url": "..\/images\/"
+    },
+    "grammar": {
+        "model": {
+            "name": "plutchik",
+            "block": {
+                "flag": "false",
+                "by": {
+                    "incomprehensible": "incomprehensible",
+                    "neutral": "neutral"
+                }
+            }
+        },
+        "category": {
+            "row_0": {
+                "header": "Irony",
+                "buttons": {
+                    "irony": {
+                        "color": "#007bff",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    },
+                    "sarcasm": {
+                        "color": "#007bff",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    }
+                }
+            },
+            "row_1": {
+                "header": "Hate speech",
+                "buttons": {
+                    "hate": {
+                        "color": "#17a2b3",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    },
+                    "offensiveness": {
+                        "color": "#17a2b3",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    }
+                }
+            },
+            "row_2": {
+                "header": "Other",
+                "buttons": {
+                    "neutral": {
+                        "color": "#6c757d",
+                        "block": {
+                            "flag": "true",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    },
+                    "incomprehensible": {
+                        "color": "#ffc107",
+                        "block": {
+                            "flag": "true",
+                            "by": []
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -14,7 +14,7 @@ class AnnotationController extends Controller
 
     public function __construct()
     {
-        $this->config = include('..\config.php');
+        $this->config = json_decode(file_get_contents('..\config.json'), true);
 
         $this->user = $this->config['user'];
 

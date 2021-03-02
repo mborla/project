@@ -16,7 +16,7 @@
     <title>Annotation</title>
 
     @php
-        $config = include('..\config.php');   //file di configurazione
+        $config = json_decode(file_get_contents('..\config.json'), true);   //file di configurazione
     @endphp
 
     <link href="../css/annotation.css" type="text/css" rel="stylesheet"/>
@@ -43,6 +43,8 @@
                     #{{ $div }}{
                         width: {{ $config['layout'][$layout][$div]['width'] }};
                         float: {{ $config['layout'][$layout][$div]['float'] }};
+                        margin-left: {{ $config['layout'][$layout][$div]['margin-left'] }};
+                        margin-right: {{ $config['layout'][$layout][$div]['margin-right'] }};
                     }
                     @media (max-width : 800px) {
                         #{{ $div }}{

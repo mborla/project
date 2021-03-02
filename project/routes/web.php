@@ -40,3 +40,7 @@ Route::get('/previousList/{id}','App\Http\Controllers\TweetController@listTweets
 Route::get('/addAnnotation','App\Http\Controllers\AnnotationController@store');
 
 Route::get('/showsTheSentenceToChange/{id}','App\Http\Controllers\TweetController@showsTheSentenceToChange');
+
+Route::get('/info', function () {
+    return view('info');
+});

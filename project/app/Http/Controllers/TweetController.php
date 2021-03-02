@@ -15,7 +15,7 @@ class TweetController extends Controller
 
     public function __construct()
     {
-        $this->config = include('..\config.php');
+        $this->config = json_decode(file_get_contents('..\config.json'), true);
         $this->user = $this->config['user'];//config('config.user');
         $this->id_user = DB::table('users')
             ->select('id')
@@ -39,12 +39,10 @@ class TweetController extends Controller
                     ->where('id', $id_project)
                     ->first()->model;
 
-        // modifico il file di configurazione
         $config['grammar']['model']['name'] = $model;
-        $config = '<?php return ' . var_export($config, true) . ';';
-        file_put_contents(config_path('..\config.php'), $config);
-        $config = include('..\config.php');
-        $model = ($config['grammar']['model']['name']);
+        $json = $config;
+        file_put_contents(config_path('..\config.json'), json_encode($json, JSON_PRETTY_PRINT));
+
 
         $id_project = DB::table('project_user')
                         ->select('id_project')
@@ -98,7 +96,7 @@ class TweetController extends Controller
             if($sentence != null){
                 return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'model' => $model]);
             }else{
-                echo 'finish';
+                return view('info', ['info' => 'Finish', 'last_id' => $last_annotation_id]);
             }
         }
     }
@@ -147,10 +145,12 @@ class TweetController extends Controller
                 ->orderBy('tweet_user.id')
                 ->first();
 
+            $last_id = $sentence->id;
+
             if($sentence != null){
                 return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id]);
             }else{
-                echo 'finish';
+                return view('info', ['info' => 'Finish', 'last_id' => $id]);
             }
 
         }
@@ -194,7 +194,7 @@ class TweetController extends Controller
 
             return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'tag' => $tags]);
         }else{
-            echo 'no tweet prec';
+            return view('info', ['info' => 'No previous tweet']);
         }
     }
 
