@@ -6,7 +6,7 @@ In your file system, navigate to the project directory.
 
 Edit DB_DATABASE, DB_USERNAME, DB_PASSWORD in file 'env'. 
 
-Edit 'user' in config.php.
+Edit 'user' in config.json.
 
 On the command line:
 ```
