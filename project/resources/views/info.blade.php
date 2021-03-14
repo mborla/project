@@ -21,7 +21,7 @@
         <div id="info">
             <h1>{{ $info }}!</h1>
             @if(isset($last_id))
-                <a href="/previous/{{ $last_id }}">Last annotation</a> <br>
+                <a href="/showsTheSentenceToChange/{{ $last_id }}">Last annotation</a> <br>
                 <a href="/">Home</a> <br>
             @else
                 <a href="#" onclick="history.go(-1)">Back</a> <br>

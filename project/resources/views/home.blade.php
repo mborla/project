@@ -18,7 +18,7 @@
 </head>
 <body>
     @php
-        $config = json_decode(file_get_contents('..\config.json'), true);   // file di configurazione
+        $config = json_decode(file_get_contents('..\config.json'), true);
     @endphp
 
     <div class="container-fluid">
@@ -36,7 +36,7 @@
             </div>
             <div class="col">
                 <h3>Create a new project</h3>
-                <a href="/new_project">New</a> <!-- nuovo progetto -->
+                <a href="/configuration">New</a> <!-- nuovo progetto -->
             </div>
         </div>
     </div>

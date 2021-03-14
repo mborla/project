@@ -16,11 +16,14 @@
     <title>Annotation</title>
 
     @php
-        $config = json_decode(file_get_contents('..\config.json'), true);   //file di configurazione
+        $config = json_decode(file_get_contents('..\config.json'), true);
     @endphp
 
     <link href="../css/annotation.css" type="text/css" rel="stylesheet"/>
+
+    @isset($config['grammar']['model']['name'])
     <link rel="stylesheet" href="../css/{{ $config['grammar']['model']['name'] }}.css">
+    @endif
 
 </head>
 <body>
@@ -34,7 +37,9 @@
 
 <div class="container-fluid">
     @foreach($config['layout'] as $layout => $layout)
+
         <div class="{{ $layout }}">
+
         @foreach($config['layout'][$layout] as $div => $div)
 
             @include($div) <!--richiamo il div del modello, del tweet e dei bottoni -->
@@ -53,13 +58,15 @@
                         }
                     }
                 </style>
-        @endforeach
+            @endforeach
         </div>
     @endforeach
 </div>
 
 <!-- richiama il js del modello scelto, es. plutchik.js -->
+@isset($config['grammar']['model']['name'])
 <script type="text/javascript" src="../js/{{ $config['grammar']['model']['name'] }}.js"></script>
+@endif
 
 <script>
     var next = $("#btn_next");
@@ -71,38 +78,41 @@
         @isset($tag)
         @foreach($tag as $tags)
 
-        annotation.push('{{ $tags->tag }}');
+            annotation.push('{{ $tags->tag }}');
 
-        // metto in evidenza le emozioni della ruota
-        $({{ $tags->tag }}).attr("class", "selected").css("fill", "black");
-        $("#text_{{ $tags->tag }}").css("fill", "white");
+            // metto in evidenza le emozioni della ruota
+            $({{ $tags->tag }}).attr("class", "selected").css("fill", "black");
+            $("#text_{{ $tags->tag }}").css("fill", "white");
 
-        // metto in evidenza i bottoni e gestisco il blocco
-        $("input").each(function (){
-            if($(this).attr("id") === "{{ $tags->tag }}"){
+            // metto in evidenza i bottoni e gestisco il blocco
+            $("input").each(function (){
+                if($(this).attr("id") === "{{ $tags->tag }}"){
 
-                $(this).attr("class", "selected").prop('checked', true);
+                    $(this).attr("class", "selected").prop('checked', true);
 
-                var flag = $(this).attr("value");
-                var selected_btn = $(this).attr("id");
-                if (flag === "true") {  // se il bottone è bloccante deseleziono tutti i bottoni che blocca
-                    @foreach($config['grammar']['category'] as $category => $category)
-                        @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
-                            @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
-                                if ('{{ $block }}' === selected_btn) {
-                                    $({{ $button }}).attr("class", "unselected").prop('checked', false).prop("disabled", true);
-                                }
-                            @endforeach
-                            @foreach($config['grammar']['model']['block']['by'] as $block => $block)
-                                if ('{{ $block }}' === selected_btn) {
-                                    $('#model').css("pointer-events", "none");
-                                }
+                    var flag = $(this).attr("value");
+                    var selected_btn = $(this).attr("id");
+                    if (flag === "true") {  // se il bottone è bloccante deseleziono tutti i bottoni che blocca
+                        @foreach($config['grammar']['category'] as $category => $category)
+                            @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
+                                @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
+                                    if ('{{ $block }}' === selected_btn) {
+                                        $({{ $button }}).attr("class", "unselected").prop('checked', false).prop("disabled", true);
+                                    }
+                                @endforeach
+
+                                @isset($config['grammar']['model']['block']['by'])
+                                @foreach($config['grammar']['model']['block']['by'] as $block => $block)
+                                    if ('{{ $block }}' === selected_btn) {
+                                        $('#model').css("pointer-events", "none");
+                                    }
+                                @endforeach
+                                @endisset
                             @endforeach
                         @endforeach
-                    @endforeach
+                    }
                 }
-            }
-        })
+            })
 
         @endforeach
 

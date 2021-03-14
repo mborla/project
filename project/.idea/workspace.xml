@@ -141,10 +141,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Project_10-03/project2" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Marta\Desktop\Project\project\project_config" />
+      <recent name="C:\Users\Marta\Desktop\Project\project\vendor" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -194,10 +200,34 @@
       <workItem from="1614587083209" duration="10404000" />
       <workItem from="1614615478964" duration="8771000" />
       <workItem from="1614673712107" duration="8782000" />
+      <workItem from="1614683436526" duration="788000" />
+      <workItem from="1614850011510" duration="14637000" />
+      <workItem from="1614963713436" duration="3830000" />
+      <workItem from="1615023080972" duration="1676000" />
+      <workItem from="1615107088845" duration="18693000" />
+      <workItem from="1615190651582" duration="15875000" />
+      <workItem from="1615278577725" duration="16286000" />
+      <workItem from="1615361629390" duration="24032000" />
+      <workItem from="1615450456017" duration="25385000" />
+      <workItem from="1615537003164" duration="4610000" />
+      <workItem from="1615625220193" duration="6476000" />
+      <workItem from="1615668873792" duration="592000" />
+      <workItem from="1615710893356" duration="13816000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/new_project.blade.php</url>
+          <line>63</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UsersSeeder extends Seeder
 {
     static $names = [
-        'Marta',
-        'Alfonso',
-        'Salvatore'
+
     ];
 
     /**

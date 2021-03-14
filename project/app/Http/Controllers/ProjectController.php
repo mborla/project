@@ -14,7 +14,6 @@ class ProjectController extends Controller
 
     public function __construct()
     {
-        //$this->config = include('..\config.php');
         $this->config = json_decode(file_get_contents('..\config.json'), true);
     }
 
@@ -28,28 +27,22 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'project_name' => 'required|unique:projects,name',
-            'model' => 'nullable',
             'users.*' => 'required|exists:users,name|min:'.$this->config['num_annotators'],
             'dataset' => 'required'
         ]);
 
         $project_name = $request->project_name;
         $users = $request->users;
-        $model = $request->model;
+        $filename = $request->filename;
+
 
         $num_annotators = $this->config['num_annotators'];//config('config.num_annotators');
         $num_tweet = $this->config['num_tweet']; //config('config.num_tweet');
         $num_annotations = $this->config['num_annotation']; //config('config.num_annotation');
         $num_random_tweets = ceil(min(50, (10/100)*$num_tweet)); // o il 10% o 50
 
-        // modifico il file di configurazione
-        $this->config['grammar']['model']['name'] = $model;
-        $json = $this->config;
-        file_put_contents(config_path('..\config.json'), json_encode($json, JSON_PRETTY_PRINT));
-
-
         // inserimento del nuovo progetto
-        DB::insert('INSERT INTO projects(name, model) VALUES (?, ?)', [$project_name, $model]);
+        DB::insert('INSERT INTO projects(name, config) VALUES (?, ?)', [$project_name, $filename]);
 
         $id_project = DB::table('projects')
                         ->select('id')
@@ -98,10 +91,10 @@ class ProjectController extends Controller
                 foreach ($shuffled as $tweet){
 
                     $tweet = DB::table('tweets')
-                                    ->select('id')
-                                    ->where('id_project', $id_project->id)
-                                    ->where('sentence', $tweet)
-                                    ->first();
+                                ->select('id')
+                                ->where('id_project', $id_project->id)
+                                ->where('sentence', $tweet)
+                                ->first();
 
                     DB::insert('INSERT INTO tweet_user (id_tweet, id_user) VALUES (?, ?)', [$tweet->id, $user]);
                 }
@@ -183,6 +176,19 @@ class ProjectController extends Controller
                     ->get();
 
         return view('home', ['projects' => $projects]);
+    }
+
+    public function getConfigFile(Request $request){
+
+        $validated = $request->validate([
+            'filename' => 'required'
+        ]);
+
+        $config = json_decode(file_get_contents('..\project_config\\'.$request->filename.'.json'), true);
+        file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
+
+        return view('new_project', ['file' => $request->filename]);
+
     }
 
 }

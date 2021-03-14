@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/configuration', function () {
+    return view('configuration');
+});
+
+Route::get('/insertConfigFile','App\Http\Controllers\ProjectController@getConfigFile');
+
 Route::get('/','App\Http\Controllers\ProjectController@index');
 
 Route::post('/insertProject','App\Http\Controllers\ProjectController@store');
@@ -44,3 +50,5 @@ Route::get('/showsTheSentenceToChange/{id}','App\Http\Controllers\TweetControlle
 Route::get('/info', function () {
     return view('info');
 });
+
+Route::get('/getConfig','App\Http\Controllers\ProjectController@getConfigFile');

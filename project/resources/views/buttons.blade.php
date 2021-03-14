@@ -1,10 +1,13 @@
 <div class="col" id="buttons">  <!-- creazione dei bottoni -->
-    @if($config['grammar']['category'] != null)
+    @if(isset($config['grammar']['category']))
 
         @foreach($config['grammar']['category'] as $category => $category)
 
             <div class="row" id="row_added" value="{{ $category }}">
+
+                @isset($config['grammar']['category'][$category]['header'])
                 <div class="text-header">{{ $config['grammar']['category'][$category]['header'] }}</div> <!-- header es. Ironia, Hate speech, Altro-->
+                @endisset
 
                 @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
                     <div class="col" id="col_added">
@@ -25,10 +28,10 @@
                 @endforeach
             </div>
 
-        @endforeach
-    @endif
+    @endforeach
+@endif
 
-    <!-- bottoni previous e next -->
+<!-- bottoni previous e next -->
     <div class="row" id="row_control">
         <div class="col" id="col_previous">
             <form action="/previous/{{ $id }}" method="GET">
@@ -58,53 +61,58 @@
         var selected_btn = $(this).attr("id");
         var flag = $(this).attr("value");
 
-
         if($(this).attr("class") === "unselected"){
 
             $(this).attr("class", "selected").prop('checked', true);
 
             if (flag === "true") {
-                @foreach($config['grammar']['category'] as $category => $c)
-                    @foreach($config['grammar']['category'][$category]['buttons'] as $button => $b)
-                        @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $row => $r)
-                            if ('{{ $row }}' === selected_btn) {
+
+                @foreach($config['grammar']['category'] as $category => $category) //'row_'
+                    @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
+                        @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
+                            if ('{{ $block }}' === selected_btn) {
                                 $({{ $button }}).attr("class", "unselected").prop('checked', false).prop("disabled", true);
                             }
                         @endforeach
 
-                        @foreach($config['grammar']['model']['block']['by'] as $row => $r)
-                            if ('{{ $row }}' === selected_btn) {
+                        @isset($config['grammar']['model']['block']['by'])
+                        @foreach($config['grammar']['model']['block']['by'] as $block => $block)
+                            if ('{{ $block }}' === selected_btn) {
 
-                                $(".selected").not($(this)).attr("class", "unselected").css("fill", function (){
-                                    return $(this).attr("color");
+                                d3.select('#model').selectAll(".selected").attr("class", "unselected").style("fill", function (){
+                                    return d3.select(this).attr("color");
                                 })
 
                                 $("textPath").css("fill", "black");
 
                                 $('#model').css("pointer-events", "none");
-                            }
+                        }
                         @endforeach
+                        @endisset
                     @endforeach
                 @endforeach
+
             }
         }else{
             $(this).attr("class", "unselected").prop('checked', false);
 
             @foreach($config['grammar']['category'] as $category => $c)
                 @foreach($config['grammar']['category'][$category]['buttons'] as $button => $b)
-                    @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $row => $r)
-                        if ('{{ $row }}' === selected_btn) {
+                    @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
+                        if ('{{ $block }}' === selected_btn) {
                             $({{ $button }}).prop("disabled", false);
                         }
                     @endforeach
-                    @foreach($config['grammar']['model']['block']['by'] as $row => $r)
-                        if ('{{ $row }}' === selected_btn) {
+
+
+                    @foreach($config['grammar']['model']['block']['by'] as $block => $block)
+                        if ('{{ $block }}' === selected_btn) {
                             $('#model').css("pointer-events", "initial");
                         }
                     @endforeach
+
                 @endforeach
             @endforeach
-
         }
 
     });

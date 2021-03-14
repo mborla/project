@@ -935,7 +935,7 @@
         "use strict";
         r.r(e);
         var n = {
-            en: [["ecstasy", "admiration", "terror", "amazement", "grief", "loathing", "rage", "vigilance"], ["joy", "trust", "fear", "surprise", "sadness", "disgust", "anger", "anticipation"], ["serenity", "acceptance", "apprehension", "distraction", "pensiveness", "boredom", "annoyance", "interest"], ["love", "submission", "awe", "disapproval", "emorse", "contempt", "aggressiveness", "optimistm"]],
+            en: [["ecstasy", "admiration", "terror", "amazement", "grief", "loathing", "rage", "vigilance"], ["joy", "trust", "fear", "surprise", "sadness", "disgust", "anger", "anticipation"], ["serenity", "acceptance", "apprehension", "distraction", "pensiveness", "boredom", "annoyance", "interest"], ["love", "submission", "awe", "disapproval", "remorse", "contempt", "aggressiveness", "optimistm"]],
             pl: [["ekstaza", "podziw", "przerażenie", "zdumienie", "rozpacz", "wstręt", "furia", "czujność"], ["radość", "ufność", "strach", "zaskoczenie", "smutek", "odraza", "gniew", "niecierpliwość"], ["pogoda ducha", "akceptacja", "niepokój", "rozproszenie uwagi", "zaduma", "nuda", "irytacja", "zainteresowanie"], ["miłość", "poddanie", "respekt", "dezaprobata", "skrucha", "pogarda", "agresywność", "optymizm"]]
         };
         class i {
@@ -1234,7 +1234,7 @@ var dataset = [
     { count: 10 }
 ];
 
-var primary_dyads = ["love", "submission", "awe", "disapproval", "emorse", "contempt", "aggressiveness", "optimistm"];
+var primary_dyads = ["love", "submission", "awe", "disapproval", "remorse", "contempt", "aggressiveness", "optimistm"];
 var secondary_dyads = ["guilt", "curiosity", "despair", "unbelief", "envy", "cynicism", "pride", "hope"];
 var tertiary_dyads = ["delight", "sentimentality", "shame", "outrage", "pessimism", "morbidness", "dominance", "anxiety"];
 
@@ -1253,7 +1253,7 @@ var color = d3.scaleOrdinal()
 var svg = d3.select('#model')
             .append('svg')
             .attr("preserveAspectRatio", "xMidYMid meet")
-            .attr("viewBox", [-width / 2, -height / 2, 100, 100]);
+            .attr("viewBox", [-width / 2, -height / 2, 100, 100])
 
 
 var svg3 = svg.append('g')
@@ -1364,7 +1364,7 @@ var height = d3.select("#model").style("height").slice(0, -2);
 
 var flag = false;
 
-var primary_dyads = ["love", "submission", "awe", "disapproval", "emorse", "contempt", "aggressiveness", "optimistm"];
+var primary_dyads = ["love", "submission", "awe", "disapproval", "remorse", "contempt", "aggressiveness", "optimistm"];
 var secondary_dyads = ["guilt", "curiosity", "despair", "unbelief", "envy", "cynicism", "pride", "hope"];
 var tertiary_dyads = ["delight", "sentimentality", "shame", "outrage", "pessimism", "morbidness", "dominance", "anxiety"];
 

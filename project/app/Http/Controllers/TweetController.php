@@ -18,9 +18,9 @@ class TweetController extends Controller
         $this->config = json_decode(file_get_contents('..\config.json'), true);
         $this->user = $this->config['user'];//config('config.user');
         $this->id_user = DB::table('users')
-            ->select('id')
-            ->where('name', $this->user)
-            ->first()->id;
+                        ->select('id')
+                        ->where('name', $this->user)
+                        ->first()->id;
     }
 
     /**
@@ -33,16 +33,13 @@ class TweetController extends Controller
         $config = $this->config;
         $id_project = Route::current()->parameter('id_project');
 
-        // modello del progetto
-        $model = DB::table('projects')
-                    ->select('model')
-                    ->where('id', $id_project)
-                    ->first()->model;
+        $filename = DB::table('projects')
+                        ->select('config')
+                        ->where('id', $id_project)
+                        ->first()->config;
 
-        $config['grammar']['model']['name'] = $model;
-        $json = $config;
-        file_put_contents(config_path('..\config.json'), json_encode($json, JSON_PRETTY_PRINT));
-
+        $config = json_decode(file_get_contents('..\project_config\\'.$filename.'.json'), true);
+        file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
 
         $id_project = DB::table('project_user')
                         ->select('id_project')
@@ -69,7 +66,7 @@ class TweetController extends Controller
                 ->orderBy('tweet_user.id')
                 ->first();
 
-            return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'model' => $model]);
+            return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id]);
 
         } else {    // altrimenti prendo l'id dell'ultima annotazione fatta il successivo tweet da annotare
 
@@ -94,7 +91,7 @@ class TweetController extends Controller
                 ->first();
 
             if($sentence != null){
-                return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'model' => $model]);
+                return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id]);
             }else{
                 return view('info', ['info' => 'Finish', 'last_id' => $last_annotation_id]);
             }
@@ -145,7 +142,6 @@ class TweetController extends Controller
                 ->orderBy('tweet_user.id')
                 ->first();
 
-            $last_id = $sentence->id;
 
             if($sentence != null){
                 return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id]);
