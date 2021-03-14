@@ -22,4 +22,5 @@ php artisan serve
 ```
 
 ## Demo data
-Before inserting a new project modify 'num_tweet' in config.php with the exact number of sentences to note
+Create a new configuration file in the "project_config" folder following the example of config_pew.json. 
+'num_tweet' must be the exact number of sentences to note in your dataset.
