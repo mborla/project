@@ -1529,10 +1529,10 @@ function selection(name,value, selected){
         var em_0_2 = emotions_0[pos2];
         var em_2_1 = emotions_2[pos1];
         var em_2_2 = emotions_2[pos2];
-        d3.select('#'+em_0_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");;
-        d3.select('#'+em_2_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");;
-        d3.select('#'+em_0_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");;
-        d3.select('#'+em_2_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");;
+        d3.select('#'+em_0_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_2_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_0_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_2_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
 
         dyadSelection(e1, e2, selected)
     }

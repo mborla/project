@@ -82,6 +82,7 @@
 
             // metto in evidenza le emozioni della ruota
             $({{ $tags->tag }}).attr("class", "selected").css("fill", "black");
+            //$(".dyads #text_{{ $tags->tag }}").css("fill", "white");
             $("#text_{{ $tags->tag }}").css("fill", "white");
 
             // metto in evidenza i bottoni e gestisco il blocco

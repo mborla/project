@@ -800,35 +800,35 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="251" parent="241" name="id_tweet_user">
+    <column id="251" parent="241" name="tag">
       <Position>2</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="252" parent="241" name="tag">
-      <Position>3</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="253" parent="241" name="id_user">
+    <column id="252" parent="241" name="created_at">
+      <Position>3</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <column id="253" parent="241" name="updated_at">
       <Position>4</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <column id="254" parent="241" name="id_user">
+      <Position>5</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="254" parent="241" name="created_at">
-      <Position>5</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="255" parent="241" name="updated_at">
+    <column id="255" parent="241" name="id_tweet_user">
       <Position>6</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <index id="256" parent="241" name="annotations_id_tweet_user_foreign">
-      <ColNames>id_tweet_user</ColNames>
+    <index id="256" parent="241" name="annotations_id_user_foreign">
+      <ColNames>id_user</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="257" parent="241" name="annotations_id_user_foreign">
-      <ColNames>id_user</ColNames>
+    <index id="257" parent="241" name="annotations_id_tweet_user_foreign">
+      <ColNames>id_tweet_user</ColNames>
       <Type>btree</Type>
     </index>
     <key id="258" parent="241" name="PRIMARY">
@@ -836,16 +836,16 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="259" parent="241" name="annotations_id_tweet_user_foreign">
-      <ColNames>id_tweet_user</ColNames>
-      <RefTableName>tweet_user</RefTableName>
+    <foreign-key id="259" parent="241" name="annotations_id_user_foreign">
+      <ColNames>id_user</ColNames>
+      <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="260" parent="241" name="annotations_id_user_foreign">
-      <ColNames>id_user</ColNames>
-      <RefTableName>users</RefTableName>
+    <foreign-key id="260" parent="241" name="annotations_id_tweet_user_foreign">
+      <ColNames>id_tweet_user</ColNames>
+      <RefTableName>tweet_user</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
@@ -940,23 +940,23 @@
       <ColNames>email</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="279" parent="245" name="id_project">
+    <column id="279" parent="245" name="created_at">
       <Position>1</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>timestamp|0s</DataType>
     </column>
-    <column id="280" parent="245" name="id_user">
+    <column id="280" parent="245" name="updated_at">
       <Position>2</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <column id="281" parent="245" name="id_project">
+      <Position>3</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="281" parent="245" name="created_at">
-      <Position>3</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="282" parent="245" name="updated_at">
+    <column id="282" parent="245" name="id_user">
       <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="283" parent="245" name="project_user_id_project_foreign">
       <ColNames>id_project</ColNames>
@@ -1024,23 +1024,23 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="296" parent="247" name="id_tweet">
+    <column id="296" parent="247" name="created_at">
       <Position>2</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>timestamp|0s</DataType>
     </column>
-    <column id="297" parent="247" name="id_user">
+    <column id="297" parent="247" name="updated_at">
       <Position>3</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <column id="298" parent="247" name="id_tweet">
+      <Position>4</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="298" parent="247" name="created_at">
-      <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="299" parent="247" name="updated_at">
+    <column id="299" parent="247" name="id_user">
       <Position>5</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="300" parent="247" name="tweet_user_id_tweet_foreign">
       <ColNames>id_tweet</ColNames>
@@ -1080,18 +1080,18 @@
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="307" parent="248" name="id_project">
+    <column id="307" parent="248" name="created_at">
       <Position>3</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>timestamp|0s</DataType>
     </column>
-    <column id="308" parent="248" name="created_at">
+    <column id="308" parent="248" name="updated_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="309" parent="248" name="updated_at">
+    <column id="309" parent="248" name="id_project">
       <Position>5</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="310" parent="248" name="tweets_id_project_foreign">
       <ColNames>id_project</ColNames>

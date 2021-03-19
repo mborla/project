@@ -1,8 +1,9 @@
 {
     "user": "Marta",
-    "num_tweet": 1000,
+    "num_tweet": 12,
     "num_annotators": 1,
     "num_annotation": 1,
+    "repetition": "true",
     "layout": {
         "col_1": {
             "model": {

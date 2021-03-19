@@ -39,7 +39,11 @@ class ProjectController extends Controller
         $num_annotators = $this->config['num_annotators'];//config('config.num_annotators');
         $num_tweet = $this->config['num_tweet']; //config('config.num_tweet');
         $num_annotations = $this->config['num_annotation']; //config('config.num_annotation');
-        $num_random_tweets = ceil(min(50, (10/100)*$num_tweet)); // o il 10% o 50
+        if($this->config['repetition'] == "true") {
+            $num_random_tweets = ceil(min(50, (10 / 100) * $num_tweet)); // o il 10% o 50
+        }else{
+            $num_random_tweets = 0;
+        }
 
         // inserimento del nuovo progetto
         DB::insert('INSERT INTO projects(name, config) VALUES (?, ?)', [$project_name, $filename]);

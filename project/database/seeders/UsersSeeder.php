@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class UsersSeeder extends Seeder
 {
     static $names = [
-
+        'Marta',
+        'Alfonso',
+        'Salvatore'
     ];
 
     /**
@@ -23,12 +25,12 @@ class UsersSeeder extends Seeder
     {
         $config = json_decode(file_get_contents('config.json'), true);
         $name = $config['user'];
-        //foreach (self::$names as $name) {
+        foreach (self::$names as $name) {
             DB::table('users')->insert([
                 'name' => $name,
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
             ]);
-        //}
+        }
     }
 }

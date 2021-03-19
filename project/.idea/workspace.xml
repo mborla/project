@@ -141,9 +141,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Project_10-03/project2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Tesi/annotation-app" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -212,7 +213,12 @@
       <workItem from="1615537003164" duration="4610000" />
       <workItem from="1615625220193" duration="6476000" />
       <workItem from="1615668873792" duration="592000" />
-      <workItem from="1615710893356" duration="13816000" />
+      <workItem from="1615710893356" duration="16934000" />
+      <workItem from="1615796582179" duration="17501000" />
+      <workItem from="1615971092780" duration="4965000" />
+      <workItem from="1616056303467" duration="6637000" />
+      <workItem from="1616151221130" duration="2566000" />
+      <workItem from="1616159984797" duration="2881000" />
     </task>
     <servers />
   </component>
