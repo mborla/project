@@ -38,7 +38,10 @@
             <div class="col">
 
                 @php
-                    $config = json_decode(file_get_contents('..\project_config\\'.$file.'.json'), true);
+                    //$config = json_decode(file_get_contents('..\project_config\\'.$file.'.json'), true);
+                    //$config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'project_config'.DIRECTORY_SEPARATOR.$file.'.json'), true)
+                    $config = json_decode(file_get_contents(base_path('project_config'.DIRECTORY_SEPARATOR.$file.'.json')), true)
+
                 @endphp
 
                 <form action="/insertProject" method="POST" enctype="multipart/form-data">
@@ -60,38 +63,6 @@
                             @endif
                         </div>
                     </div>
-
-                    <!--<script>
-
-                        $(document).ready(function(){
-                            $('#rest_of_form').show().hide();
-                        });
-
-
-                        $("select").change(function(){
-
-                            $( "select option:selected").each(function(){
-
-                                var file = $( "select option:selected").val();
-
-                                $.ajax({
-                                    type: "get",
-                                    url: "/getConfig",
-                                    dataType: "json",
-                                    data: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), file: file},
-
-                                    success:function(data) {
-                                        console.log(data)
-                                    }
-                                });
-
-                                $("#rest_of_form").show();
-                            });
-                        });
-
-
-                    </script>-->
-
 
                     <div id="rest_of_form">
                         <div class="form-group row">

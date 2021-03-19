@@ -18,7 +18,8 @@
 </head>
 <body>
     @php
-        $config = json_decode(file_get_contents('..\config.json'), true);
+        //$config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'config.json'), true);
+        $config = json_decode(file_get_contents(base_path('config.json')), true);
     @endphp
 
     <div class="container-fluid">

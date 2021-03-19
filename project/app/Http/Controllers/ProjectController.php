@@ -14,7 +14,9 @@ class ProjectController extends Controller
 
     public function __construct()
     {
-        $this->config = json_decode(file_get_contents('..\config.json'), true);
+        //$this->config =json_decode(file_get_contents("..".DIRECTORY_SEPARATOR."config.json"), true);
+        $json = base_path('config.json');
+        $this->config =json_decode(file_get_contents($json), true);
     }
 
     /**
@@ -188,8 +190,11 @@ class ProjectController extends Controller
             'filename' => 'required'
         ]);
 
-        $config = json_decode(file_get_contents('..\project_config\\'.$request->filename.'.json'), true);
-        file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
+        //$config = json_decode(file_get_contents('..\project_config\\'.$request->filename.'.json'), true);
+        //file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
+
+        $config = json_decode(file_get_contents(base_path('project_config'.DIRECTORY_SEPARATOR.$request->filename.'.json'),true));
+        file_put_contents(base_path('config.json'), json_encode($config, JSON_PRETTY_PRINT));
 
         return view('new_project', ['file' => $request->filename]);
 

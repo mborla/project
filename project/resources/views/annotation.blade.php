@@ -16,7 +16,8 @@
     <title>Annotation</title>
 
     @php
-        $config = json_decode(file_get_contents('..\config.json'), true);
+        //$config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'config.json'), true);
+        $config = json_decode(file_get_contents(base_path('config.json')), true);
     @endphp
 
     <link href="../css/annotation.css" type="text/css" rel="stylesheet"/>
@@ -64,7 +65,7 @@
 </div>
 
 <!-- richiama il js del modello scelto, es. plutchik.js -->
-@isset($config['grammar']['model']['name'])
+@isset($config['grammar']['model'])
 <script type="text/javascript" src="../js/{{ $config['grammar']['model']['name'] }}.js"></script>
 @endif
 

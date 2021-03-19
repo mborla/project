@@ -23,7 +23,8 @@ class UsersSeeder extends Seeder
 
     public function run()
     {
-        $config = json_decode(file_get_contents('config.json'), true);
+        $json = base_path('config.json');
+        $config = json_decode(file_get_contents($json), true);
         $name = $config['user'];
         foreach (self::$names as $name) {
             DB::table('users')->insert([

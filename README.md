@@ -2,9 +2,12 @@
 Tool for annotations.
 
 ## Usage
-In your file system, navigate to the project directory.
 
-Edit DB_DATABASE, DB_USERNAME, DB_PASSWORD in file 'env'. 
+```
+composer install
+```
+
+MySQL in local. Create a database named "database".
 
 Edit 'user' in config.json.
 

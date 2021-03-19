@@ -43,14 +43,15 @@
                         <select class="custom-select" name="filename">
                             <option value="" selected></option>
                             @php
-                                $filesInFolder = \File::files('..\project_config');
+                                //$filesInFolder = \File::files('..'.DIRECTORY_SEPARATOR.'project_config');
+                                $filesInFolder = \File::files(base_path('project_config'));
                             @endphp
                             @foreach($filesInFolder as $path)
                                 <option value="{{ pathinfo($path)['filename'] }}">{{ pathinfo($path)['filename'] }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('filename'))
-                            <div class="error" style="color: red">{{ $errors->first('filename') }}</div>
+                            <div class="error" style="color: #ff0000">{{ $errors->first('filename') }}</div>
                         @endif
                     </div>
                 </div>

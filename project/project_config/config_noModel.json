@@ -1,0 +1,96 @@
+{
+    "user": "Marta",
+    "num_tweet": 12,
+    "num_annotators": 1,
+    "num_annotation": 1,
+    "repetition": "true",
+    "layout": {
+        "col_2": {
+            "tweet": {
+                "width": "50%",
+                "float": "none",
+                "margin-left": "25%",
+                "margin-right": "25%"
+            },
+            "buttons": {
+                "width": "50%",
+                "float": "none",
+                "margin-left": "25%",
+                "margin-right": "25%"
+            }
+        }
+    },
+    "list_previous_tweets": "true",
+    "images": {
+        "flag": "false",
+        "url": "..\/images\/"
+    },
+    "grammar": {
+        "category": {
+            "row_0": {
+                "header": "RGB",
+                "buttons": {
+                    "red": {
+                        "color": "red",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+
+                            }
+                        }
+                    },
+                    "green": {
+                        "color": "green",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+
+                            }
+                        }
+                    },
+                    "blue": {
+                        "color": "blue",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+
+                            }
+                        }
+                    }
+                }
+            },
+            "row_1": {
+                "header": "CMY",
+                "buttons": {
+                    "cyan": {
+                        "color": "cyan",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    },
+                    "magenta": {
+                        "color": "magenta",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    },
+                    "yellow": {
+                        "color": "yellow",
+                        "block": {
+                            "flag": "false",
+                            "by": {
+                                "incomprehensible": "incomprehensible"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

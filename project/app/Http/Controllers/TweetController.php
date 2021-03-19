@@ -15,7 +15,9 @@ class TweetController extends Controller
 
     public function __construct()
     {
-        $this->config = json_decode(file_get_contents('..\config.json'), true);
+        //$this->config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'config.json'), true);
+        $this->config = json_decode(file_get_contents(base_path('config.json')), true);
+
         $this->user = $this->config['user'];//config('config.user');
         $this->id_user = DB::table('users')
                         ->select('id')
@@ -38,8 +40,12 @@ class TweetController extends Controller
                         ->where('id', $id_project)
                         ->first()->config;
 
-        $config = json_decode(file_get_contents('..\project_config\\'.$filename.'.json'), true);
-        file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
+        //$config = json_decode(file_get_contents('..\project_config\\'.$filename.'.json'), true);
+        //$config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'project_config'.DIRECTORY_SEPARATOR.$filename.'.json'), true);
+        //file_put_contents(config_path('..'.DIRECTORY_SEPARATOR.'config.json'), json_encode($config, JSON_PRETTY_PRINT));
+
+        $config = json_decode(file_get_contents(base_path('project_config'.DIRECTORY_SEPARATOR.$filename.'.json'),true));
+        file_put_contents(base_path('config.json'), json_encode($config, JSON_PRETTY_PRINT));
 
         $id_project = DB::table('project_user')
                         ->select('id_project')

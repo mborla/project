@@ -104,12 +104,13 @@
                         }
                     @endforeach
 
-
+                    @isset($config['grammar']['model'])
                     @foreach($config['grammar']['model']['block']['by'] as $block => $block)
                         if ('{{ $block }}' === selected_btn) {
                             $('#model').css("pointer-events", "initial");
                         }
                     @endforeach
+                    @endisset
 
                 @endforeach
             @endforeach
