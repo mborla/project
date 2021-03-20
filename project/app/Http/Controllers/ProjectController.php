@@ -113,6 +113,7 @@ class ProjectController extends Controller
         }else{ // Es. 4 annotatori e 3 annotazioni per tweet
             $num_tweets_for_user = ceil($num_tweet * ($num_annotations / $num_annotators)); // 1000*(3/4) = 750 --> ognuno dei 4 avrà 750 tweet da annotare
             $part = ceil($num_tweet/$num_annotators); // 1000/4 = 250 --> primi 250, secondi 250, terzi 250, quarti 250
+            $num_random_tweets = ceil(min(50, (10 / 100) * $num_tweets_for_user));
 
             $skip = 0;
 
