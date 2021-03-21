@@ -1,115 +1,259 @@
 svg.plutchik {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 svg.plutchik text {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: 9.5pt;
-  text-anchor: middle;
-  fill: #000;
-  font-weight: 400;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 9.5pt;
+    text-anchor: middle;
+    fill: #000;
+    font-weight: 400;
 }
 svg.plutchik #ecstasy {
-  fill: #ffcd1a;
+    fill: #ffcd1a;
 }
+svg.plutchik #ecstasy.active {
+    fill: black;
+}
+
 svg.plutchik #joy {
-  fill: #ffde66;
+    fill: #ffde66;
 }
+svg.plutchik #joy.active {
+    fill: black;
+}
+
 svg.plutchik #serenity {
-  fill: #ffe999;
+    fill: #ffe999;
 }
+svg.plutchik #serenity.active {
+    fill: black;
+}
+
 svg.plutchik #love {
-  fill: #f0f9c7;
+    fill: #f0f9c7;
 }
 svg.plutchik #admiration {
-  fill: #85ff1a;
+    fill: #85ff1a;
 }
 svg.plutchik #trust {
-  fill: #adff66;
+    fill: #adff66;
 }
 svg.plutchik #acceptance {
-  fill: #c9ff99;
+    fill: #c9ff99;
 }
 svg.plutchik #submission {
-  fill: #deffda;
+    fill: #deffda;
 }
 svg.plutchik #terror {
-  fill: #1aff5b;
+    fill: #1aff5b;
 }
 svg.plutchik #fear {
-  fill: #66ff91;
+    fill: #66ff91;
 }
 svg.plutchik #apprehension {
-  fill: #99ffb6;
+    fill: #99ffb6;
 }
 svg.plutchik #awe {
-  fill: #cbfeec;
+    fill: #cbfeec;
 }
 svg.plutchik #amazement {
-  fill: #1af7ff;
+    fill: #1af7ff;
 }
 svg.plutchik #surprise {
-  fill: #66faff;
+    fill: #66faff;
 }
 svg.plutchik #distraction {
-  fill: #99fcff;
+    fill: #99fcff;
 }
 svg.plutchik #disapproval {
-  fill: #cceaff;
+    fill: #cceaff;
 }
 svg.plutchik #grief {
-  fill: #1a4bff;
+    fill: #1a4bff;
 }
 svg.plutchik #sadness {
-  fill: #6687ff;
+    fill: #6687ff;
 }
 svg.plutchik #pensiveness {
-  fill: #99afff;
+    fill: #99afff;
 }
 svg.plutchik #remorse {
-  fill: #ded7ff;
+    fill: #ded7ff;
 }
 svg.plutchik #loathing {
-  fill: #941aff;
+    fill: #941aff;
 }
 svg.plutchik #disgust {
-  fill: #b866ff;
+    fill: #b866ff;
 }
 svg.plutchik #boredom {
-  fill: #cf99ff;
+    fill: #cf99ff;
 }
 svg.plutchik #contempt {
-  fill: #f2c6f7;
+    fill: #f2c6f7;
 }
 svg.plutchik #rage {
-  fill: #ff211a;
+    fill: #ff211a;
 }
 svg.plutchik #anger {
-  fill: #ff6b66;
+    fill: #ff6b66;
 }
 svg.plutchik #annoyance {
-  fill: #ff9c99;
+    fill: #ff9c99;
 }
 svg.plutchik  #aggressiveness {
-  fill: #ffdbce;
+    fill: #ffdbce;
 }
 svg.plutchik #vigilance {
-  fill: #ff941a;
+    fill: #ff941a;
 }
 svg.plutchik #anticipation {
-  fill: #ffaa66;
+    fill: #ffaa66;
 }
 svg.plutchik #interest {
-  fill: #ffc199;
+    fill: #ffc199;
 }
 svg.plutchik #optimistm {
-  fill: #ffeecc;
+    fill: #ffeecc;
+}
+
+svg.plutchik a.active path {
+    fill: #000;
+}
+svg.plutchik a.active text {
+    fill: #fff;
+}
+
+svg.plutchik a.not-active text {
+    fill: #000;
+}
+
+#guilt.not-active{
+    fill: rgb(138, 198, 80);
+}
+#guilt.active{
+    fill: black;
+}
+
+#curiosity.not-active{
+    fill: rgb(0, 165, 81);
+}
+#curiosity.active{
+    fill: black;
+}
+
+#despair.not-active{
+    fill: rgb(0, 153, 205);
+}
+#despair.active{
+    fill: black;
+}
+
+#unbelief.not-active{
+    fill: rgb(41, 131, 197);
+}
+#unbelief.active{
+    fill: black;
+}
+
+#envy.not-active{
+    fill: rgb(137, 115, 179);
+}
+#envy.active{
+    fill: black;
+}
+
+#cynicism.not-active{
+    fill: rgb(240, 91, 97);
+}
+#cynicism.active{
+    fill: black;
+}
+
+#pride.not-active{
+    fill: rgb(246, 146, 61);
+}
+#pride.active{
+    fill: black;
+}
+
+#hope.not-active{
+    fill: rgb(255, 202, 5)
+}
+#hope.active{
+    fill: black;
+}
+
+#delight.not-active{
+    fill: rgb(138, 198, 80);
+}
+#delight.active{
+    fill: black;
+}
+
+#sentimentality.not-active{
+    fill: rgb(0, 165, 81);
+}
+#sentimentality.active{
+    fill: black;
+}
+
+#shame.not-active{
+    fill: rgb(0, 153, 205);
+}
+#shame.active{
+    fill: black;
+}
+
+#outrage.not-active{
+    fill: rgb(41, 131, 197);
+}
+#outrage.active{
+    fill: black;
+}
+
+#pessimism.not-active{
+    fill: rgb(137, 115, 179);
+}
+#pessimism.active{
+    fill: black;
+}
+
+#morbidness.not-active{
+    fill: rgb(240, 91, 97);
+}
+#morbidness.active{
+    fill: black;
+}
+
+#dominance.not-active{
+    fill: rgb(246, 146, 61);
+}
+#dominance.active{
+    fill: black;
+}
+
+#anxiety.not-active{
+    fill: rgb(255, 202, 5);
+}
+#anxiety.active{
+    fill: black;
 }
 
 svg.plutchik a textPath {
     font-size: 12px;
     text-anchor: middle;
 }
+
+.text_active{
+    fill: white;
+}
+
+.text_not-active{
+    fill: black;
+}
+
 
 #model g{
     transform: translate(-50%, -50%);

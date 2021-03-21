@@ -82,15 +82,14 @@
             annotation.push('{{ $tags->tag }}');
 
             // metto in evidenza le emozioni della ruota
-            $({{ $tags->tag }}).attr("class", "selected").css("fill", "black");
-            //$(".dyads #text_{{ $tags->tag }}").css("fill", "white");
-            $("#text_{{ $tags->tag }}").css("fill", "white");
+            $({{ $tags->tag }}).attr("class", "active");
+            $(".dyads #text_{{ $tags->tag }}").attr("class", "text_active");
 
             // metto in evidenza i bottoni e gestisco il blocco
             $("input").each(function (){
                 if($(this).attr("id") === "{{ $tags->tag }}"){
 
-                    $(this).attr("class", "selected").prop('checked', true);
+                    $(this).attr("class", "active").prop('checked', true);
 
                     var flag = $(this).attr("value");
                     var selected_btn = $(this).attr("id");
@@ -99,7 +98,7 @@
                             @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
                                 @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
                                     if ('{{ $block }}' === selected_btn) {
-                                        $({{ $button }}).attr("class", "unselected").prop('checked', false).prop("disabled", true);
+                                        $({{ $button }}).attr("class", "not-active").prop('checked', false).prop("disabled", true);
                                     }
                                 @endforeach
 
@@ -131,7 +130,7 @@
         annotation = [];
 
         // inserisco nell'array annotation tutti gli id degli elementi che hanno classe "selected"
-        $(".selected").each(function(i) {
+        $(".active").each(function(i) {
             annotation.push($(this).attr("id"));
         });
 
@@ -149,7 +148,6 @@
             url:"/addAnnotation",
             data: { id: {{ $id }}, data: annotation}
         });
-
     })
 </script>
 

@@ -1019,7 +1019,6 @@
                 return r.appendChild(n),
                 e.appendChild(r),
                 this.element.appendChild(e),
-                //this.bindEvents(),
                 this.element
             }
             getDef() {
@@ -1280,10 +1279,8 @@ var path2 = svg2.selectAll('path')
                 .enter()
                 .append('path')
                 .attr("id", function(d,i) { return secondary_dyads[i]; })
-                .attr("color", function(d,i){ return color(i); })
-                .attr("class", "unselected")
+                .attr("class", "not-active")
                 .attr('d', arc2)
-                .style('fill', function(d, i) { return color(i); })
                 .each(function(d,i) {
                     var firstArcSection = /(^.+?)L/;
                     var newArc = firstArcSection.exec( d3.select(this).attr("d") )[1];
@@ -1306,6 +1303,7 @@ svg2.selectAll(".donutText")
     .style("text-anchor","middle")
     .attr("xlink:href",function(d,i){return "#donutArc2_"+i;})
     .attr("id", function(d,i){return "text_"+secondary_dyads[i];})
+    .attr("class", "text_not-active")
     .text(function(d,i){return secondary_dyads[i];})
     .style("cursor", "pointer");
 
@@ -1317,13 +1315,7 @@ var path3 = svg3.selectAll('path')
                 .append('path')
                 .attr('d', arc3)
                 .attr("id", function(d,i) { return tertiary_dyads[i]; })
-                .attr("class", "unselected")
-                .attr("color", function(d,i){
-                    return color(i);
-                })
-                .style('fill', function(d, i) {
-                    return color(i);
-                })
+                .attr("class", "not-active")
                 .attr('opacity', 0.8)
                 .each(function(d,i) {
                     var firstArcSection = /(^.+?)L/;
@@ -1347,6 +1339,7 @@ svg3.selectAll(".donutText")
     .style("text-anchor","middle")
     .attr("xlink:href",function(d,i){return "#donutArc3_"+i;})
     .attr("id", function(d,i){return "text_"+tertiary_dyads[i];})
+    .attr("class", "text_not-active")
     .text(function(d,i){return tertiary_dyads[i];})
     .style("cursor", "pointer");
 
@@ -1447,13 +1440,11 @@ for(i = 0; i < 8; i++){
 
 }
 
-// Elementi della ruota con classe unselected
+// Elementi della ruota con classe not-active
 var i = 0; var j = 0; var k = 0; var w = 0;
 d3.select(".plutchik")
   .selectAll("a")
-  .attr("class", "unselected")
-  .attr("color", function(){ return d3.select(this).style("fill"); })
-
+  .attr("class", "not-active");
 
 // Per gli elementi "a" della ruota
 var name; var value; var selected;
@@ -1464,64 +1455,56 @@ d3.select(".plutchik")
     value = d3.select(this).attr("value");  // p-n-n
 
     // se è stato selezionato un "a"
-    if(d3.select(this).attr("class") === "unselected"){
-        d3.select(this).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+    if(d3.select(this).attr("class") === "not-active"){
+        d3.select(this).attr("class", "active")
         selected = true;
     }else{
-        d3.select(this).attr("class", "unselected").style("fill", function (){ return d3.select(this).attr("color"); }).select("textPath").style("fill", "black");
+        d3.select(this).attr("class", "not-active")
         selected = false;
     }
-    selection(name, value, selected);
+    selectionWheelEmotion(name, value, selected);
   });
 
 
-function selection(name,value, selected){
+function selectionWheelEmotion(name, value, selected){
 
-    em = value.substr(2,1);
+    degree = value.substr(2,1);
     pos = Number(value.substr(4,1));
 
-    if(em == 0){
-        var em_1 = emotions_1[pos];
-        var em_2 = emotions_2[pos];
-        d3.select('#'+em_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        selection(d3.select("#"+em_1).attr("id"), d3.select("#"+em_1).attr("value"), false);
-    }else if(em == 1){
+    if(degree == 0){
+        var em_degree_1 = emotions_1[pos];
+        var em_degree_2 = emotions_2[pos];
+        d3.select('#'+em_degree_1).attr("class", "not-active");
+        d3.select('#'+em_degree_2).attr("class", "not-active");
+        selectionWheelEmotion(d3.select("#"+em_degree_1).attr("id"), d3.select("#"+em_degree_1).attr("value"), false);
+    }else if(degree == 1){
         if(selected == true) {
-            var em_0 = emotions_0[pos];
-            var em_2 = emotions_2[pos];
-            d3.select('#' + em_0).attr("class", "unselected")
-              .style("fill", function () {
-                return d3.select(this).attr("color")
-              })
-              .select("textPath").style("fill", "black");
-            d3.select('#' + em_2).attr("class", "unselected")
-              .style("fill", function () {
-                return d3.select(this).attr("color")
-              })
-              .select("textPath").style("fill", "black");
+            var em_degree_0 = emotions_0[pos];
+            var em_degree_2 = emotions_2[pos];
+            d3.select('#' + em_degree_0).attr("class", "not-active");
+            d3.select('#' + em_degree_2).attr("class", "not-active");
         }
-    }else if(em == 2){
-        var em_0 = emotions_0[pos];
-        var em_1 = emotions_1[pos];
-        d3.select('#'+em_0).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        selection(d3.select("#"+em_1).attr("id"), d3.select("#"+em_1).attr("value"), false);
+    }else if(degree == 2){
+        var em_degree_0 = emotions_0[pos];
+        var em_degree_1 = emotions_1[pos];
+        d3.select('#'+em_degree_0).attr("class", "not-active");
+        d3.select('#'+em_degree_1).attr("class", "not-active");
+        selectionWheelEmotion(d3.select("#"+em_degree_1).attr("id"), d3.select("#"+em_degree_1).attr("value"), false);
     }
 
     // se diade primaria prendo i suoi vicini a distanza 1. Es. love = joy + trust
-    if(em == 3){
+    if(degree == 3){
         for(var i = 0; i < emotions_p.length; i++){
             if(emotions_p[i].result == name){
-                e1 = emotions_p[i].emotion1;
-                e2 = emotions_p[i].emotion2;
+                basicEm1 = emotions_p[i].emotion1;
+                basicEm2 = emotions_p[i].emotion2;
             }
         }
-        value1 = d3.select("#"+e1).attr("value");
-        value2 = d3.select("#"+e2).attr("value");
+        value1 = d3.select("#"+basicEm1).attr("value");
+        value2 = d3.select("#"+basicEm2).attr("value");
 
-        em1 = value1.substr(2,1);
-        em2 = value2.substr(2,1);
+        //em1 = value1.substr(2,1);
+        //em2 = value2.substr(2,1);
         pos1 = Number(value1.substr(4,1));
         pos2 = Number(value2.substr(4,1));
 
@@ -1529,12 +1512,12 @@ function selection(name,value, selected){
         var em_0_2 = emotions_0[pos2];
         var em_2_1 = emotions_2[pos1];
         var em_2_2 = emotions_2[pos2];
-        d3.select('#'+em_0_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_0_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_0_1).attr("class", "not-active");
+        d3.select('#'+em_2_1).attr("class", "not-active");
+        d3.select('#'+em_0_2).attr("class", "not-active");
+        d3.select('#'+em_2_2).attr("class", "not-active");
 
-        dyadSelection(e1, e2, selected)
+        selectionDyad(basicEm1, basicEm2, selected)
     }
 
 
@@ -1552,8 +1535,8 @@ function selection(name,value, selected){
     var res1;
     var res2;
 
-    if(em == 1){    // se emozioni principali (joy, fear..)
-        // guardo se i vicini sono selected o unselected
+    if(degree == 1){    // se emozioni principali (joy, fear..)
+        // guardo se i vicini sono active o not-active
         var em_1_1 = d3.select("#"+n_1_1).attr("class");
         var em_1_2 = d3.select("#"+n_1_2).attr("class");
 
@@ -1564,7 +1547,7 @@ function selection(name,value, selected){
         var em_3_2 = d3.select("#"+n_3_2).attr("class");
 
         // se tutte e due sono selezionate a distanza 1 allora ci saranno due risultati
-        if(em_1_1 == "selected" && em_1_2 == "selected"){
+        if(em_1_1 == "active" && em_1_2 == "active"){
             for(var i = 0; i < emotions_p.length; i++){
                 if(emotions_p[i].emotion1 == name && emotions_p[i].emotion2 == n_1_1){
                     res1 = emotions_p[i].result;
@@ -1582,7 +1565,7 @@ function selection(name,value, selected){
                 hide(res1, res2);
             }
             //se solo una è selezionata avrò un solo risultato
-        }else if(em_1_1 == "selected" && em_1_2 == "unselected"){
+        }else if(em_1_1 == "active" && em_1_2 == "not-active"){
             for(var i = 0; i < emotions_p.length; i++){
                 if(emotions_p[i].emotion1 == name && emotions_p[i].emotion2 == n_1_1){
                     res = emotions_p[i].result;
@@ -1594,7 +1577,7 @@ function selection(name,value, selected){
                 hide(res, null);
             }
             //se solo una è selezionata avrò un solo risultato
-        }else if(em_1_2 == "selected" && em_1_1 == "unselected"){
+        }else if(em_1_2 == "active" && em_1_1 == "not-active"){
             for(var i = 0; i < emotions_p.length; i++){
                 if(emotions_p[i].emotion1 == name && emotions_p[i].emotion2 == n_1_2){
                     res = emotions_p[i].result;
@@ -1608,7 +1591,7 @@ function selection(name,value, selected){
         }
 
         // se tutte e due sono selezionate a distanza 2 allora ci saranno due risultati
-        if(em_2_1 == "selected" && em_2_2 == "selected"){
+        if(em_2_1 == "active" && em_2_2 == "active"){
             for(var i = 0; i < emotions_s.length; i++){
                 if(emotions_s[i].emotion1 == name && emotions_s[i].emotion2 == n_2_1){
                     res1 = emotions_s[i].result;
@@ -1622,7 +1605,7 @@ function selection(name,value, selected){
 
             if(selected == true){ show(res1, res2); }else{ hide(res1, res2);}
             //se solo una è selezionata avrò un solo risultato
-        }else if(em_2_1 == "selected" && em_2_2 == "unselected"){
+        }else if(em_2_1 == "active" && em_2_2 == "not-active"){
             for(var i = 0; i < emotions_s.length; i++){
                 if(emotions_s[i].emotion1 == name && emotions_s[i].emotion2 == n_2_1){
                     res = emotions_s[i].result;
@@ -1631,7 +1614,7 @@ function selection(name,value, selected){
 
             if(selected == true){ show(res, null); }else{ hide(res, null); }
             //se solo una è selezionata avrò un solo risultato
-        }else if(em_2_2 == "selected" && em_2_1 == "unselected"){
+        }else if(em_2_2 == "active" && em_2_1 == "not-active"){
             for(var i = 0; i < emotions_s.length; i++){
                 if(emotions_s[i].emotion1 == name && emotions_s[i].emotion2 == n_2_2){
                     res = emotions_s[i].result;
@@ -1642,7 +1625,7 @@ function selection(name,value, selected){
         }
 
         // se tutte e due sono selezionate a distanza 3 allora ci saranno due risultati
-        if(em_3_1 == "selected" && em_3_2 == "selected"){
+        if(em_3_1 == "active" && em_3_2 == "active"){
             for(var i = 0; i < emotions_t.length; i++){
                 if(emotions_t[i].emotion1 == name && emotions_t[i].emotion2 == n_3_1){
                     res1 = emotions_t[i].result;
@@ -1655,7 +1638,7 @@ function selection(name,value, selected){
             }
 
             if(selected == true){ show(res1, res2); }else{ hide(res1, res2); }
-        }else if(em_3_1 == "selected" && em_3_2 == "unselected"){
+        }else if(em_3_1 == "active" && em_3_2 == "not-active"){
             for(var i = 0; i < emotions_t.length; i++){
                 if(emotions_t[i].emotion1 == name && emotions_t[i].emotion2 == n_3_1){
                     res = emotions_t[i].result;
@@ -1663,7 +1646,7 @@ function selection(name,value, selected){
             }
 
             if(selected == true){ show(res, null); }else{ hide(res, null); }
-        }else if(em_3_2 == "selected" && em_3_1 == "unselected"){
+        }else if(em_3_2 == "active" && em_3_1 == "not-active"){
             for(var i = 0; i < emotions_t.length; i++){
                 if(emotions_t[i].emotion1 == name && emotions_t[i].emotion2 == n_3_2){
                     res = emotions_t[i].result;
@@ -1696,10 +1679,10 @@ function show(res1, res2) {
                     .on("click", function () {
                         for (var i = 0; i < 8; i++) {
                             if (res1 == primary_dyads[i]) {
-                                d3.select("svg.plutchik").select("#" + res1).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+                                d3.select("svg.plutchik").select("#" + res1).attr("class", "active").select("textPath");
                             } else if (res1 == secondary_dyads[i] || res1 == tertiary_dyads[i]) {
-                                d3.select("#" + res1).style("fill", "black").attr("class", "selected");
-                                d3.select("#text_" + res1).style("fill", "white");
+                                d3.select("#" + res1).attr("class", "active");
+                                d3.select("#text_" + res1).attr("class", "text_active");
                             }
                         }
                         tooltip.remove();
@@ -1714,10 +1697,10 @@ function show(res1, res2) {
 
                 for (var i = 0; i < 8; i++) {
                     if (res1 == primary_dyads[i]) {
-                        d3.select("svg.plutchik").select("#" + res1).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+                        d3.select("svg.plutchik").select("#" + res1).attr("class", "active");
                     } else if (res1 == secondary_dyads[i] || res1 == tertiary_dyads[i]) {
-                        d3.select("#" + res1).style("fill", "black").attr("class", "selected");
-                        d3.select("#text_" + res1).style("fill", "white");
+                        d3.select("#" + res1).attr("class", "active");
+                        d3.select("#text_" + res1).attr("class", "text_active");
                     }
                 }
             }
@@ -1746,11 +1729,10 @@ function show(res1, res2) {
                     .on("click", function () {
                         for (var i = 0; i < 8; i++) {
                             if (res1 == primary_dyads[i]) {
-                                d3.select("svg.plutchik").select("#" + res1).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
-                                //annotation.push(res1);
+                                d3.select("svg.plutchik").select("#" + res1).attr("class", "active");
                             } else if (res1 == secondary_dyads[i] || res1 == tertiary_dyads[i]) {
-                                d3.select("#" + res1).style("fill", "black").attr("class", "selected");
-                                d3.select("#text_" + res1).style("fill", "white");
+                                d3.select("#" + res1).attr("class", "active");
+                                d3.select("#text_" + res1).attr("class", "text_active");
                             }
                         }
 
@@ -1768,10 +1750,10 @@ function show(res1, res2) {
                     .on("click", function () {
                         for (var i = 0; i < 8; i++) {
                             if (res2 == primary_dyads[i]) {
-                                d3.select("svg.plutchik").select("#" + res2).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+                                d3.select("svg.plutchik").select("#" + res2).attr("class", "active");
                             } else if (res2 == secondary_dyads[i] || res2 == tertiary_dyads[i]) {
-                                d3.select("#" + res2).style("fill", "black").attr("class", "selected");
-                                d3.select("#text_" + res2).style("fill", "white");
+                                d3.select("#" + res2).attr("class", "active");
+                                d3.select("#text_" + res2).attr("class", "text_active");
                             }
                         }
 
@@ -1787,14 +1769,14 @@ function show(res1, res2) {
             } else {
                 for (var i = 0; i < 8; i++) {
                     if (res1 == primary_dyads[i]) {
-                        d3.select("svg.plutchik").select("#" + res1).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+                        d3.select("svg.plutchik").select("#" + res1).attr("class", "active");
                     } else if (res2 == primary_dyads[i]) {
-                        d3.select("svg.plutchik").select("#" + res2).attr("class", "selected").style("fill", "black").select("textPath").style("fill", "white");
+                        d3.select("svg.plutchik").select("#" + res2).attr("class", "active");
                     } else if (res1 == secondary_dyads[i] || res2 == secondary_dyads[i] || res1 == tertiary_dyads[i] || res2 == tertiary_dyads[i]) {
-                        d3.select("#" + res1).style("fill", "black").attr("class", "selected");
-                        d3.select("#text_" + res1).style("fill", "white");
-                        d3.select("#" + res2).style("fill", "black").attr("class", "selected");
-                        d3.select("#text_" + res2).style("fill", "white");
+                        d3.select("#" + res1).attr("class", "active");
+                        d3.select("#text_" + res1).attr("class", "text_active");
+                        d3.select("#" + res2).attr("class", "active");
+                        d3.select("#text_" + res2).attr("class", "text_active");
                     }
                 }
             }
@@ -1805,47 +1787,30 @@ function show(res1, res2) {
 function hide(res1, res2){
 
     if(res2 == null){
-
         for(var i = 0; i < 8; i++){
             if(res1 == primary_dyads[i]){
-                d3.select("svg.plutchik").select("#"+res1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color");}).select("textPath").style("fill", "black");
+                d3.select("svg.plutchik").select("#"+res1).attr("class", "not-active")
             }else if(res1 == secondary_dyads[i] || res1 == tertiary_dyads[i]){
-                d3.select("#"+res1)
-                    .style("fill", function(d,i){
-                        return d3.select(this).attr("color");
-                    })
-                    .attr("class", "unselected");
-
-                d3.select("#text_"+res1).style("fill", "black");
-
+                d3.select("#"+res1).attr("class", "not-active");
+                d3.select("#text_"+res1).attr("class", "text_not-active");
             }
         }
-
     }else{
-
         for(var i = 0; i < 8; i++){
             if(res1 == primary_dyads[i]){
-                d3.select("svg.plutchik").select("#"+res1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color");}).select("textPath").style("fill", "black");
+                d3.select("svg.plutchik").select("#"+res1).attr("class", "not-active");
             }else if(res2 == primary_dyads[i]){
-                d3.select("svg.plutchik").select("#"+res2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color");}).select("textPath").style("fill", "black");
+                d3.select("svg.plutchik").select("#"+res2).attr("class", "not-active");
             }else if(res1 == secondary_dyads[i] || res2 == secondary_dyads[i] || res1 == tertiary_dyads[i] || res2 == tertiary_dyads[i]){
-                d3.select("#"+res1)
-                    .style("fill", function(d,i){
-                        return d3.select(this).attr("color");
-                    })
-                    .attr("class", "unselected");
-                d3.select("#text_"+res1).style("fill", "black");
+                d3.select("#"+res1).attr("class", "not-active");
+                d3.select("#text_"+res1).attr("class", "text_not-active");
 
-                d3.select("#"+res2)
-                    .style("fill", function(d,i){
-                        return color = d3.select(this).attr("color");
-                    })
-                    .attr("class", "unselected");
-                d3.select("#text_"+res2).style("fill", "black");
-
+                d3.select("#"+res2).attr("class", "not-active");
+                d3.select("#text_"+res2).attr("class", "text_not-active");
             }
         }
     }
+
 }
 
 // caso in cui si seleziona la diade secondaria e devo selezionare le emozioni principali
@@ -1856,59 +1821,48 @@ d3.selectAll(".secondary_text")
         var length = name.length;
         var s_dyad = name.substr(5, length); //text_
 
-        // controllo se è già stato selezionato oppure no e cambio il colore
-        if(d3.select("#"+s_dyad).attr("class") == "selected"){
-
+        // controllo se è già stato selezionato oppure no
+        if(d3.select("#"+s_dyad).attr("class") == "active"){
             selected = false;
-
-            d3.select("#"+s_dyad)
-                .style("fill", function(){
-                    return d3.select(this).attr("color");
-                })
-                .attr("class", "unselected");
-
-            d3.select(this).style("fill", "black");
-
+            d3.select("#"+s_dyad).attr("class", "not-active");
+            d3.select("#text_"+s_dyad).attr("class", "text_not-active");
         }else{
             selected = true;
-
-            d3.select("#"+s_dyad)
-                .style("fill", "black")
-                .attr("class", "selected");
-
-            d3.select(this).style("fill", "white")
-
+            d3.select("#"+s_dyad).attr("class", "active");
+            d3.select("#text_"+s_dyad).attr("class", "text_active");
         }
 
-        var name1;
-        var name2;
+        var basicEm1;
+        var basicEm2;
 
         // prendo le emozioni che generano la diade sec
         for(var i = 0; i < emotions_s.length; i++){
             if(emotions_s[i].result == s_dyad){
-                name1 = emotions_s[i].emotion1;
-                name2 = emotions_s[i].emotion2;
+                basicEm1 = emotions_s[i].emotion1;
+                basicEm2 = emotions_s[i].emotion2;
             }
         }
 
-        value1 = d3.select("#"+name1).attr("value");
-        value2 = d3.select("#"+name2).attr("value");
+        value1 = d3.select("#"+basicEm1).attr("value");
+        value2 = d3.select("#"+basicEm2).attr("value");
 
-        em1 = value1.substr(2,1);
-        em2 = value2.substr(2,1);
+        //em1 = value1.substr(2,1);
+        //em2 = value2.substr(2,1);
+
         pos1 = Number(value1.substr(4,1));
         pos2 = Number(value2.substr(4,1));
 
+        // emozioni di grado 1 e 3 sul petalo da disattivare perchè è si deve attivare quella centrale
         var em_0_1 = emotions_0[pos1];
         var em_0_2 = emotions_0[pos2];
         var em_2_1 = emotions_2[pos1];
         var em_2_2 = emotions_2[pos2];
-        d3.select('#'+em_0_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_0_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_0_1).attr("class", "not-active");
+        d3.select('#'+em_2_1).attr("class", "not-active");
+        d3.select('#'+em_0_2).attr("class", "not-active");
+        d3.select('#'+em_2_2).attr("class", "not-active");
 
-        dyadSelection(name1, name2, selected);
+        selectionDyad(basicEm1, basicEm2, selected);
     });
 
 // stessa situazione per le terziarie
@@ -1919,44 +1873,31 @@ d3.selectAll(".tertiary_text")
         var length = name.length;
         var t_dyad = name.substr(5, length);
 
-        if(d3.select("#"+t_dyad).attr("class") == "selected"){
-
+        if(d3.select("#"+t_dyad).attr("class") == "active"){
             selected = false;
-
-            d3.select("#"+t_dyad)
-                .style("fill", function(){
-                    return d3.select(this).attr("color");
-                })
-                .attr("class", "unselected");
-
-            d3.select(this).style("fill", "black")
-
+            d3.select("#"+t_dyad).attr("class", "not-active");
+            d3.select("#text_"+t_dyad).attr("class", "text_not-active");
         }else{
             selected = true;
-
-            d3.select("#"+t_dyad)
-                .style("fill", "black")
-                .attr("class", "selected");
-
-            d3.select(this).style("fill", "white");
-
+            d3.select("#"+t_dyad).attr("class", "active");
+            d3.select("#text_"+t_dyad).attr("class", "text_active");
         }
 
-        var name1;
-        var name2;
+        var basicEm1;
+        var basicEm2;
 
         for(var i = 0; i < emotions_t.length; i++){
             if(emotions_t[i].result == t_dyad){
-                name1 = emotions_t[i].emotion1;
-                name2 = emotions_t[i].emotion2;
+                basicEm1 = emotions_t[i].emotion1;
+                basicEm2 = emotions_t[i].emotion2;
             }
         }
 
-        value1 = d3.select("#"+name1).attr("value");
-        value2 = d3.select("#"+name2).attr("value");
+        value1 = d3.select("#"+basicEm1).attr("value");
+        value2 = d3.select("#"+basicEm2).attr("value");
 
-        em1 = value1.substr(2,1);
-        em2 = value2.substr(2,1);
+        //em1 = value1.substr(2,1);
+        //em2 = value2.substr(2,1);
         pos1 = Number(value1.substr(4,1));
         pos2 = Number(value2.substr(4,1));
 
@@ -1964,62 +1905,49 @@ d3.selectAll(".tertiary_text")
         var em_0_2 = emotions_0[pos2];
         var em_2_1 = emotions_2[pos1];
         var em_2_2 = emotions_2[pos2];
-        d3.select('#'+em_0_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_1).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_0_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
-        d3.select('#'+em_2_2).attr("class", "unselected").style("fill", function(){ return d3.select(this).attr("color")}).select("textPath").style("fill", "black");
+        d3.select('#'+em_0_1).attr("class", "not-active");
+        d3.select('#'+em_2_1).attr("class", "not-active");
+        d3.select('#'+em_0_2).attr("class", "not-active");
+        d3.select('#'+em_2_2).attr("class", "not-active");
 
-        dyadSelection(name1, name2, selected);
+        selectionDyad(basicEm1, basicEm2, selected);
     });
 
 
-function dyadSelection(name1, name2, selected){
+function selectionDyad(basicEm1, basicEm2, selected){
 
-    var s1 = d3.select("svg.plutchik").select("#"+name1)
-    var s2 = d3.select("svg.plutchik").select("#"+name2)
+    var em1 = d3.select("svg.plutchik").select("#"+basicEm1)
+    var em2 = d3.select("svg.plutchik").select("#"+basicEm2)
 
     // se ho selezionato
     if(selected == true){
 
         if(flag == true){
 
-            var tooltip = d3.select("body").append("div").attr("class", "toolTip").attr("id", "tooltip_"+name1+"-"+name2);
+            var tooltip = d3.select("body").append("div").attr("class", "toolTip").attr("id", "tooltip_"+basicEm1+"-"+basicEm2);
 
             tooltip.style("visibility", "visible")
                    .style("left", (width/2)-50+"px")
                    .style("top", (height/2)-55+"px")
                    .style("display", "inline-block")
-                   .html("Vuoi selezionare <br><span>" + (name1) + ", " + (name2) + "</span>?<br><button type=\"button\" id=\"tooltip-btn-si\" class=\"btn btn-outline-secondary\">Si</button><button type=\"button\" id=\"tooltip-btn-no\" class=\"btn btn-outline-secondary\">No</button>");
+                   .html("Vuoi selezionare <br><span>" + (basicEm1) + ", " + (basicEm2) + "</span>?<br><button type=\"button\" id=\"tooltip-btn-si\" class=\"btn btn-outline-secondary\">Si</button><button type=\"button\" id=\"tooltip-btn-no\" class=\"btn btn-outline-secondary\">No</button>");
 
-            d3.select("#tooltip_"+name1+"-"+name2)
+            d3.select("#tooltip_"+basicEm1+"-"+basicEm2)
                 .select("#tooltip-btn-si")
                 .on("click", function(){
-                    s1.attr("class", "selected").style("fill", "black");
-                    s2.attr("class", "selected").style("fill", "black");
-
-                    s1.select("textPath").style("fill", "white");
-                    s2.select("textPath").style("fill", "white");
-
+                    em1.attr("class", "active");
+                    em2.attr("class", "active");
                     tooltip.remove();
                 });
 
-            d3.select("#tooltip_"+name1+"-"+name2)
+            d3.select("#tooltip_"+basicEm1+"-"+basicEm2)
                 .select("#tooltip-btn-no")
-                .on("click", function(){
-                    tooltip.remove();
-                });
+                .on("click", function(){ tooltip.remove(); });
 
         }else{
-            s1.attr("class", "selected").style("fill", "black");
-            s2.attr("class", "selected").style("fill", "black");
-
-            s1.select("textPath").style("fill", "white");
-            s2.select("textPath").style("fill", "white");
+            em1.attr("class", "active");
+            em2.attr("class", "active");
         }
     }
 
 }
-
-
-
-

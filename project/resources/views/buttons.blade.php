@@ -12,7 +12,7 @@
                 @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
                     <div class="col" id="col_added">
                         <!-- bottoni es. ironia, sarcasmo, odio.. -->
-                        <input type="checkbox" name="{{ $button }}" id="{{ $button }}" value="{{ $config['grammar']['category'][$category]['buttons'][$button]['block']['flag'] }}" class="unselected">
+                        <input type="checkbox" name="{{ $button }}" id="{{ $button }}" value="{{ $config['grammar']['category'][$category]['buttons'][$button]['block']['flag'] }}" class="not-active">
                         <label for="{{ $button }}" type="button" class="btn btn-outline btn-block btn-sm">{{ $button }}</label>
                     </div>
                     <style> /* colore dei bottoni dal file di conf */
@@ -36,11 +36,8 @@
         <div class="col" id="col_previous">
             <form action="/previous/{{ $id }}" method="GET">
                 {{ csrf_field() }}
-
                 <input type="checkbox" name="previous" id="previous" value="previous">
                 <button id="btn_previous" for="previous" type="submit" class="btn btn-success btn-block btn-sm">Previous</button>
-
-
             </form>
         </div>
         <div class="col" id="col_next">
@@ -61,9 +58,9 @@
         var selected_btn = $(this).attr("id");
         var flag = $(this).attr("value");
 
-        if($(this).attr("class") === "unselected"){
+        if($(this).attr("class") === "not-active"){
 
-            $(this).attr("class", "selected").prop('checked', true);
+            $(this).attr("class", "active").prop('checked', true);
 
             if (flag === "true") {
 
@@ -71,22 +68,17 @@
                     @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
                         @foreach($config['grammar']['category'][$category]['buttons'][$button]['block']['by'] as $block => $block)
                             if ('{{ $block }}' === selected_btn) {
-                                $({{ $button }}).attr("class", "unselected").prop('checked', false).prop("disabled", true);
+                                $({{ $button }}).attr("class", "not-active").prop('checked', false).prop("disabled", true);
                             }
                         @endforeach
 
                         @isset($config['grammar']['model']['block']['by'])
                         @foreach($config['grammar']['model']['block']['by'] as $block => $block)
                             if ('{{ $block }}' === selected_btn) {
-
-                                d3.select('#model').selectAll(".selected").attr("class", "unselected").style("fill", function (){
-                                    return d3.select(this).attr("color");
-                                })
-
-                                $("textPath").css("fill", "black");
-
+                                d3.select('#model').selectAll(".active").attr("class", "not-active");
+                                d3.selectAll('.text_active').attr("class", "text_not-active");
                                 $('#model').css("pointer-events", "none");
-                        }
+                            }
                         @endforeach
                         @endisset
                     @endforeach
@@ -94,7 +86,7 @@
 
             }
         }else{
-            $(this).attr("class", "unselected").prop('checked', false);
+            $(this).attr("class", "not-active").prop('checked', false);
 
             @foreach($config['grammar']['category'] as $category => $c)
                 @foreach($config['grammar']['category'][$category]['buttons'] as $button => $b)
