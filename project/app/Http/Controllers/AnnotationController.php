@@ -14,7 +14,6 @@ class AnnotationController extends Controller
 
     public function __construct()
     {
-        //$this->config = json_decode(file_get_contents('..'.DIRECTORY_SEPARATOR.'config.json'), true);
         $json = base_path('config.json');
         $this->config = json_decode(file_get_contents($json), true);
 
@@ -69,7 +68,7 @@ class AnnotationController extends Controller
         if ($length != 0) {
             for ($i = 0; $i < $length; $i++) {
                 $tag = $request->data[$i];
-                DB::insert('INSERT INTO annotations (id_user, id_tweet_user, tag) VALUES (?, ?, ?)', [$this->id_user, $id_tweet_user, $tag]);
+                DB::insert('INSERT INTO annotations (id_user, id_tweet_user, tag, id_project) VALUES (?, ?, ?, ?)', [$this->id_user, $id_tweet_user, $tag, $id_project]);
             }
         }
 

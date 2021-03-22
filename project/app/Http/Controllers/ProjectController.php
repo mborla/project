@@ -14,7 +14,6 @@ class ProjectController extends Controller
 
     public function __construct()
     {
-        //$this->config =json_decode(file_get_contents("..".DIRECTORY_SEPARATOR."config.json"), true);
         $json = base_path('config.json');
         $this->config =json_decode(file_get_contents($json), true);
     }
@@ -34,9 +33,12 @@ class ProjectController extends Controller
         ]);
 
         $project_name = $request->project_name;
-        $users = $request->users;
-        $filename = $request->filename;
 
+        //$users = $request->users;
+        $users = [];
+        array_push($users, $this->config['user']);
+
+        $filename = $request->filename;
 
         $num_annotators = $this->config['num_annotators'];//config('config.num_annotators');
         $num_tweet = $this->config['num_tweet']; //config('config.num_tweet');
@@ -190,9 +192,6 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'filename' => 'required'
         ]);
-
-        //$config = json_decode(file_get_contents('..\project_config\\'.$request->filename.'.json'), true);
-        //file_put_contents(config_path('..\config.json'), json_encode($config, JSON_PRETTY_PRINT));
 
         $config = json_decode(file_get_contents(base_path('project_config'.DIRECTORY_SEPARATOR.$request->filename.'.json'),true));
         file_put_contents(base_path('config.json'), json_encode($config, JSON_PRETTY_PRINT));

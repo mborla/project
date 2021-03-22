@@ -43,7 +43,6 @@
                         <select class="custom-select" name="filename">
                             <option value="" selected></option>
                             @php
-                                //$filesInFolder = \File::files('..'.DIRECTORY_SEPARATOR.'project_config');
                                 $filesInFolder = \File::files(base_path('project_config'));
                             @endphp
                             @foreach($filesInFolder as $path)

@@ -14,14 +14,12 @@ class CreateProjectUserTable extends Migration
     public function up()
     {
         Schema::create('project_user', function (Blueprint $table) {
-            //$table->id();
-            $table->timestamps();
+            $table->timestamp('create_at');
         });
 
         Schema::table('project_user', function (Blueprint $table) {
             $table->foreignId('id_project')->constrained('projects')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('id_user')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-
         });
     }
 

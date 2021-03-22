@@ -3,27 +3,31 @@ Tool for annotations.
 
 ## Usage
 
+1. On the command line:
 ```
 composer install
 ```
 
-MySQL in local. Create a database named "database".
+2. MySQL in local. Create a database named "database".
 
-Edit 'user' in config.json.
+3. Edit 'user' in config.json in "project" folder.
 
-On the command line:
+4. Create a new JSON configuration file in the "project_config" folder following the example of config_pew.json. 
+'num_tweet' must be the exact number of sentences to note in your dataset.
+
+5. On the command line:
 ```
 php artisan config:cache
 ```
-Create the tables in your local database with command:
+
+6. Create the tables in your local database with command:  
 ```
 php artisan migrate --seed
 ```
-Run:
+this command inserts a new User with the name specified previously in config.json
+
+7. Run:
 ```
 php artisan serve
 ```
 
-## Demo data
-Create a new configuration file in the "project_config" folder following the example of config_pew.json. 
-'num_tweet' must be the exact number of sentences to note in your dataset.

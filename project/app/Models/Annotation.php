@@ -12,5 +12,6 @@ class Annotation extends Model
         'id_user',
         'id_tweet_user',
         'tag',
+        'id_project'
     ];
 }
