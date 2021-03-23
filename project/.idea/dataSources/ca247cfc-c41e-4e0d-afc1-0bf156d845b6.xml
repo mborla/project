@@ -808,20 +808,24 @@
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="253" parent="242" name="created_at">
+    <column id="253" parent="242" name="create_at">
       <Position>3</Position>
       <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="254" parent="242" name="updated_at">
+    <column id="254" parent="242" name="id_user">
       <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="255" parent="242" name="id_user">
+    <column id="255" parent="242" name="id_tweet_user">
       <Position>5</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="256" parent="242" name="id_tweet_user">
+    <column id="256" parent="242" name="id_project">
       <Position>6</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
@@ -834,178 +838,187 @@
       <ColNames>id_tweet_user</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="259" parent="242" name="PRIMARY">
+    <index id="259" parent="242" name="annotations_id_project_foreign">
+      <ColNames>id_project</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="260" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="260" parent="242" name="annotations_id_user_foreign">
+    <foreign-key id="261" parent="242" name="annotations_id_user_foreign">
       <ColNames>id_user</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="261" parent="242" name="annotations_id_tweet_user_foreign">
+    <foreign-key id="262" parent="242" name="annotations_id_tweet_user_foreign">
       <ColNames>id_tweet_user</ColNames>
       <RefTableName>tweet_user</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="262" parent="243" name="id">
-      <Position>1</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="263" parent="243" name="uuid">
-      <Position>2</Position>
-      <DataType>varchar(191)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="264" parent="243" name="connection">
-      <Position>3</Position>
-      <DataType>text|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="265" parent="243" name="queue">
-      <Position>4</Position>
-      <DataType>text|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="266" parent="243" name="payload">
-      <Position>5</Position>
-      <DataType>longtext|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="267" parent="243" name="exception">
-      <Position>6</Position>
-      <DataType>longtext|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="268" parent="243" name="failed_at">
-      <Position>7</Position>
-      <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-    </column>
-    <index id="269" parent="243" name="failed_jobs_uuid_unique">
-      <ColNames>uuid</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <key id="270" parent="243" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="271" parent="243" name="failed_jobs_uuid_unique">
-      <ColNames>uuid</ColNames>
-      <UnderlyingIndexName>failed_jobs_uuid_unique</UnderlyingIndexName>
-    </key>
-    <column id="272" parent="244" name="id">
-      <Position>1</Position>
-      <DataType>int(10) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="273" parent="244" name="migration">
-      <Position>2</Position>
-      <DataType>varchar(191)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="274" parent="244" name="batch">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="275" parent="244" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="276" parent="245" name="email">
-      <Position>1</Position>
-      <DataType>varchar(191)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="277" parent="245" name="token">
-      <Position>2</Position>
-      <DataType>varchar(191)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="278" parent="245" name="created_at">
-      <Position>3</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <index id="279" parent="245" name="password_resets_email_index">
-      <ColNames>email</ColNames>
-      <Type>btree</Type>
-    </index>
-    <column id="280" parent="246" name="created_at">
-      <Position>1</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="281" parent="246" name="updated_at">
-      <Position>2</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="282" parent="246" name="id_project">
-      <Position>3</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="283" parent="246" name="id_user">
-      <Position>4</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="284" parent="246" name="project_user_id_project_foreign">
-      <ColNames>id_project</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="285" parent="246" name="project_user_id_user_foreign">
-      <ColNames>id_user</ColNames>
-      <Type>btree</Type>
-    </index>
-    <foreign-key id="286" parent="246" name="project_user_id_project_foreign">
+    <foreign-key id="263" parent="242" name="annotations_id_project_foreign">
       <ColNames>id_project</ColNames>
       <RefTableName>projects</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="287" parent="246" name="project_user_id_user_foreign">
+    <column id="264" parent="243" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="265" parent="243" name="uuid">
+      <Position>2</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="266" parent="243" name="connection">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="267" parent="243" name="queue">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="268" parent="243" name="payload">
+      <Position>5</Position>
+      <DataType>longtext|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="269" parent="243" name="exception">
+      <Position>6</Position>
+      <DataType>longtext|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="270" parent="243" name="failed_at">
+      <Position>7</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <index id="271" parent="243" name="failed_jobs_uuid_unique">
+      <ColNames>uuid</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="272" parent="243" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="273" parent="243" name="failed_jobs_uuid_unique">
+      <ColNames>uuid</ColNames>
+      <UnderlyingIndexName>failed_jobs_uuid_unique</UnderlyingIndexName>
+    </key>
+    <column id="274" parent="244" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="275" parent="244" name="migration">
+      <Position>2</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="276" parent="244" name="batch">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="277" parent="244" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="278" parent="245" name="email">
+      <Position>1</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="279" parent="245" name="token">
+      <Position>2</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="280" parent="245" name="created_at">
+      <Position>3</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <index id="281" parent="245" name="password_resets_email_index">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="282" parent="246" name="create_at">
+      <Position>1</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+    </column>
+    <column id="283" parent="246" name="id_project">
+      <Position>2</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="284" parent="246" name="id_user">
+      <Position>3</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="285" parent="246" name="project_user_id_project_foreign">
+      <ColNames>id_project</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="286" parent="246" name="project_user_id_user_foreign">
+      <ColNames>id_user</ColNames>
+      <Type>btree</Type>
+    </index>
+    <foreign-key id="287" parent="246" name="project_user_id_project_foreign">
+      <ColNames>id_project</ColNames>
+      <RefTableName>projects</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="288" parent="246" name="project_user_id_user_foreign">
       <ColNames>id_user</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="288" parent="247" name="id">
+    <column id="289" parent="247" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="289" parent="247" name="name">
+    <column id="290" parent="247" name="name">
       <Position>2</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="290" parent="247" name="config">
+    <column id="291" parent="247" name="config">
       <Position>3</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="291" parent="247" name="created_at">
+    <column id="292" parent="247" name="create_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="292" parent="247" name="updated_at">
-      <Position>5</Position>
-      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
     <index id="293" parent="247" name="projects_name_unique">
       <ColNames>name</ColNames>
@@ -1027,139 +1040,137 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="297" parent="248" name="created_at">
+    <column id="297" parent="248" name="create_at">
       <Position>2</Position>
       <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="298" parent="248" name="updated_at">
+    <column id="298" parent="248" name="id_tweet">
       <Position>3</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="248" name="id_tweet">
+    <column id="299" parent="248" name="id_user">
       <Position>4</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="300" parent="248" name="id_user">
-      <Position>5</Position>
-      <DataType>bigint(20) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="301" parent="248" name="tweet_user_id_tweet_foreign">
+    <index id="300" parent="248" name="tweet_user_id_tweet_foreign">
       <ColNames>id_tweet</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="302" parent="248" name="tweet_user_id_user_foreign">
+    <index id="301" parent="248" name="tweet_user_id_user_foreign">
       <ColNames>id_user</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="303" parent="248" name="PRIMARY">
+    <key id="302" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="304" parent="248" name="tweet_user_id_tweet_foreign">
+    <foreign-key id="303" parent="248" name="tweet_user_id_tweet_foreign">
       <ColNames>id_tweet</ColNames>
       <RefTableName>tweets</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="305" parent="248" name="tweet_user_id_user_foreign">
+    <foreign-key id="304" parent="248" name="tweet_user_id_user_foreign">
       <ColNames>id_user</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="306" parent="249" name="id">
+    <column id="305" parent="249" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="307" parent="249" name="sentence">
+    <column id="306" parent="249" name="sentence">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="308" parent="249" name="created_at">
+    <column id="307" parent="249" name="create_at">
       <Position>3</Position>
       <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="309" parent="249" name="updated_at">
+    <column id="308" parent="249" name="id_project">
       <Position>4</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="310" parent="249" name="id_project">
-      <Position>5</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="311" parent="249" name="tweets_id_project_foreign">
+    <index id="309" parent="249" name="tweets_id_project_foreign">
       <ColNames>id_project</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="312" parent="249" name="PRIMARY">
+    <key id="310" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="313" parent="249" name="tweets_id_project_foreign">
+    <foreign-key id="311" parent="249" name="tweets_id_project_foreign">
       <ColNames>id_project</ColNames>
       <RefTableName>projects</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="314" parent="250" name="id">
+    <column id="312" parent="250" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="315" parent="250" name="name">
+    <column id="313" parent="250" name="name">
       <Position>2</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="316" parent="250" name="email">
+    <column id="314" parent="250" name="email">
       <Position>3</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="317" parent="250" name="email_verified_at">
+    <column id="315" parent="250" name="email_verified_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="318" parent="250" name="password">
+    <column id="316" parent="250" name="password">
       <Position>5</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="319" parent="250" name="remember_token">
+    <column id="317" parent="250" name="remember_token">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="320" parent="250" name="created_at">
+    <column id="318" parent="250" name="created_at">
       <Position>7</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="321" parent="250" name="updated_at">
+    <column id="319" parent="250" name="updated_at">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <index id="322" parent="250" name="users_email_unique">
+    <index id="320" parent="250" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="323" parent="250" name="PRIMARY">
+    <key id="321" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="324" parent="250" name="users_email_unique">
+    <key id="322" parent="250" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
     </key>

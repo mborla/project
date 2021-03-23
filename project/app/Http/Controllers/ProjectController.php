@@ -34,9 +34,9 @@ class ProjectController extends Controller
 
         $project_name = $request->project_name;
 
-        //$users = $request->users;
-        $users = [];
-        array_push($users, $this->config['user']);
+        $users = $request->users;
+        //$users = [];
+        //array_push($users, $this->config['user']);
 
         $filename = $request->filename;
 

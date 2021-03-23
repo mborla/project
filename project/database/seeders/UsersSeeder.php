@@ -12,8 +12,7 @@ class UsersSeeder extends Seeder
     /*static $names = [
         'Marta',
         'Alfonso',
-        'Salvatore',
-        'Fabio'
+        'Salvatore'
     ];*/
 
     /**
