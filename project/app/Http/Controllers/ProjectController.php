@@ -75,11 +75,29 @@ class ProjectController extends Controller
         $file = fopen($filePath, 'r');
 
         // inserimento dei tweet nel db
-        $tweets = collect();
+        /*$tweets = collect();
         while (!feof($file)) {
             $line = fgets($file);
             $tweets->push($line);
             DB::insert('INSERT INTO tweets (id_project, sentence) VALUES (?, ?)', [$id_project->id, $line]);
+        }*/
+
+        $arr = array();
+        $tweets = collect();
+        $row = -1;
+        $separator = $this->config['dataset_separator'];
+        if (($handle = $file) !== FALSE) {
+            if($this->config['dataset_headerLine'] == 'true') {
+                fgetcsv($file, 1000, $separator);
+            }
+            while (($data = fgetcsv($handle, 1000000, $separator)) !== FALSE) {
+                $c = 0;
+                $row++;
+                $arr[$row][$c]= $data[$c];
+                $tweets->push($arr[$row][$c]);
+                DB::insert('INSERT INTO tweets (id_project, sentence) VALUES (?, ?)', [$id_project->id, $arr[$row][$c]]);
+            }
+            fclose($handle);
         }
 
         // se il numero di annotatori è uguale al numero di annotazioni --> tutti annotano tutti i tweet

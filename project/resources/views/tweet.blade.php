@@ -3,8 +3,8 @@
         <a href="/">Home</a>
     </div>
     @if($config['list_previous_tweets'] == 'true') <!-- se è true dal file di conf visualizzo il link dei tweet precedenti -->
-        <div id="list_previuos">
-            <a href="/previousList/{{ $id }}">List previuos tweets</a>
+        <div id="list_previous">
+            <a href="/previousList/{{ $id }}">List previous tweets</a>
         </div>
     @endif
 

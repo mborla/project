@@ -36,6 +36,7 @@
         <table class="table table-striped" id="table">
             <thead class="thead-dark">
             <tr class="table">
+                <th scope="col">Id</th>
                 <th scope="col">Sentence</th>
                 <th scope="col">Tag</th>
                 <th scope="col">Update</th>
@@ -44,6 +45,7 @@
             <tbody>
             @foreach($tweets as $tweet)
                 <tr>
+                    <th>{{ $tweet->id }}</th>
                     <td>{{ $tweet->sentence }}</td>
                     <td>{{ $tags[$tweet->id][0]}}
                     <td><a href="/showsTheSentenceToChange/{{ $tweet->id }}">Update</a></td>
