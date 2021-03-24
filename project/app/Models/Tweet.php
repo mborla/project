@@ -10,7 +10,6 @@ class Tweet extends Model
     protected $fillable = [
         'id',
         'id_project',
-        'sentence',
-        'label'
+        'sentence'
     ];
 }
