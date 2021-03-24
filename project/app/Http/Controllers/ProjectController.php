@@ -93,9 +93,14 @@ class ProjectController extends Controller
             while (($data = fgetcsv($handle, 1000000, $separator)) !== FALSE) {
                 $c = 0;
                 $row++;
-                $arr[$row][$c]= $data[$c];
+                $arr[$row][$c] = $data[$c];
+                if(isset($data[$c+1])) {
+                    $arr[$row][$c+1] = $data[$c + 1];
+                }else{
+                    $arr[$row][$c+1] = NULL;
+                }
                 $tweets->push($arr[$row][$c]);
-                DB::insert('INSERT INTO tweets (id_project, sentence) VALUES (?, ?)', [$id_project->id, $arr[$row][$c]]);
+                DB::insert('INSERT INTO tweets (id_project, sentence, label) VALUES (?, ?, ?)', [$id_project->id, $arr[$row][$c], $arr[$row][$c+1]]);
             }
             fclose($handle);
         }

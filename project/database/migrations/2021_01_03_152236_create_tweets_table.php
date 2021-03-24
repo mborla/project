@@ -16,6 +16,7 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('sentence');
+            $table->text('label')->nullable();
             $table->timestamp('create_at');
         });
 

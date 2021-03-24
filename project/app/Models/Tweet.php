@@ -11,5 +11,6 @@ class Tweet extends Model
         'id',
         'id_project',
         'sentence',
+        'label'
     ];
 }
