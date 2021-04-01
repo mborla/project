@@ -81,9 +81,13 @@
             annotation.push('{{ $tags->tag }}');
 
             // metto in evidenza le emozioni della ruota
-            $({{ $tags->tag }}).attr("class", "active");
-            $(".dyads #text_{{ $tags->tag }}").attr("class", "text_active");
-
+            if("{{$config['extra']}}"==='true'){
+                $({{explode('[', $tags->tag)[0]}}).attr("class", "active");
+                $({{explode('[', $tags->tag)[0]}}).attr("id", "{{$tags->tag}}");
+            }else {
+                $({{ $tags->tag }}).attr("class", "active");
+                $(".dyads #text_{{ $tags->tag }}").attr("class", "text_active");
+            }
             // metto in evidenza i bottoni e gestisco il blocco
             $("input").each(function (){
                 if($(this).attr("id") === "{{ $tags->tag }}"){
