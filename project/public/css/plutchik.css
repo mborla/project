@@ -2,7 +2,7 @@ svg.plutchik {
     width: 100%;
     height: 100%;
 }
-svg.plutchik text {
+svg.plutchik text.not-active {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 9.5pt;
     text-anchor: middle;
@@ -126,116 +126,116 @@ svg.plutchik a.active text {
 }
 
 svg.plutchik a.not-active text {
-    fill: #000;
+    color: #000;
 }
 
 #guilt.not-active{
-    fill: rgb(138, 198, 80);
+    fill: rgb(255, 202, 5);
 }
 #guilt.active{
     fill: black;
 }
 
 #curiosity.not-active{
-    fill: rgb(0, 165, 81);
+    fill: rgb(138, 198, 80);
 }
 #curiosity.active{
     fill: black;
 }
 
 #despair.not-active{
-    fill: rgb(0, 153, 205);
+    fill: rgb(0, 165, 81);
 }
 #despair.active{
     fill: black;
 }
 
 #unbelief.not-active{
-    fill: rgb(41, 131, 197);
+    fill: rgb(0, 153, 205);
 }
 #unbelief.active{
     fill: black;
 }
 
 #envy.not-active{
-    fill: rgb(137, 115, 179);
+    fill: rgb(41, 131, 197);
 }
 #envy.active{
     fill: black;
 }
 
 #cynicism.not-active{
-    fill: rgb(240, 91, 97);
+    fill: rgb(137, 115, 179);
 }
 #cynicism.active{
     fill: black;
 }
 
 #pride.not-active{
-    fill: rgb(246, 146, 61);
+    fill: rgb(240, 91, 97);
 }
 #pride.active{
     fill: black;
 }
 
 #hope.not-active{
-    fill: rgb(255, 202, 5)
+    fill: rgb(246, 146, 61);
 }
 #hope.active{
     fill: black;
 }
 
 #delight.not-active{
-    fill: rgb(138, 198, 80);
+    fill: rgb(255, 202, 5);
 }
 #delight.active{
     fill: black;
 }
 
 #sentimentality.not-active{
-    fill: rgb(0, 165, 81);
+    fill: rgb(138, 198, 80);
 }
 #sentimentality.active{
     fill: black;
 }
 
 #shame.not-active{
-    fill: rgb(0, 153, 205);
+    fill: rgb(0, 165, 81);
 }
 #shame.active{
     fill: black;
 }
 
 #outrage.not-active{
-    fill: rgb(41, 131, 197);
+    fill: rgb(0, 153, 205);
 }
 #outrage.active{
     fill: black;
 }
 
 #pessimism.not-active{
-    fill: rgb(137, 115, 179);
+    fill: rgb(41, 131, 197);
 }
 #pessimism.active{
     fill: black;
 }
 
 #morbidness.not-active{
-    fill: rgb(240, 91, 97);
+    fill: rgb(137, 115, 179);
 }
 #morbidness.active{
     fill: black;
 }
 
 #dominance.not-active{
-    fill: rgb(246, 146, 61);
+    fill: rgb(240, 91, 97);
 }
 #dominance.active{
     fill: black;
 }
 
 #anxiety.not-active{
-    fill: rgb(255, 202, 5);
+    fill: rgb(246, 146, 61);
 }
 #anxiety.active{
     fill: black;
