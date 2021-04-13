@@ -3,7 +3,7 @@
     display: inline-flex!important;
     align-items: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 1.5vw;
+    font-size: 1.7vw;
     text-anchor: middle;
     fill: #000;
     font-weight: 300;
@@ -81,6 +81,9 @@
     margin: 0;
 }
 
+#unpleasant, #pleasant, #activation, #deactivation{
+    user-select: none;
+}
 
 .li p{
     z-index: 2;

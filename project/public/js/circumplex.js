@@ -55,7 +55,7 @@ function show_model() {
     var res= $('<div id="circle"></div>');
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
-    var res3= $('<div class="not-active" id="neutrale"><div></div></div>');
+    var res3= $('<div class="not-active" id="neutrale" title="Neutral"></div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $("head").append($('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">'));
     show_model();
     $("div.not-active").click(active);
     $("div.active").click(active);
@@ -28,7 +27,7 @@ function show_model() {
     var res= $('<div id="circle"></div>');
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
-    var res3= $('<div class="not-active" id="neutrale"></div>');
+    var res3= $('<div class="not-active" id="neutrale" title="Neutral"></div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);
