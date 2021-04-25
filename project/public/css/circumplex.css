@@ -9,6 +9,10 @@
     font-weight: 300;
     height: 50%;
     margin-top: 3em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    user-select: none;
+    transition: all .1s linear;
 }
 
 #ext_circle{
@@ -35,7 +39,6 @@
     display: inline-flex;
     border-radius: 100%;
     clip-path: circle(50% at 50% 50%);
-
 }
 
 #activation, #deactivation{
@@ -44,10 +47,10 @@
     position: absolute;
 }
 #deactivation{
-    bottom: -6%;
+    bottom: -3vw;
 }
 #activation{
-    top: -6%;
+    top: -3vw;
 }
 
 #deactivation p{
@@ -100,7 +103,15 @@
     width: 50%;
     height: 50%;
     transform-origin: 0% 100%;
+    display: inherit;
+    transform-style: inherit;
 }
+
+label{
+    cursor: pointer;
+}
+
+
 div.active,  div.not-active{
     position: absolute;
     left: -100%;
@@ -112,145 +123,140 @@ div.active,  div.not-active{
 }
 
 .li:first-child {
-    transform: rotate(0deg) skewY(-67.3deg);
+    clip-path: polygon(0% -11%, 0% 100%, 48% -15%);
 }
+
 .li:nth-child(2) {
-    transform: rotate(22.5deg) skewY(-67.3deg);
+    clip-path: polygon(111% -11%, 0% 100%, 48% -15%);
 }
 .li:nth-child(3) {
-    transform: rotate(45deg) skewY(-67.3deg);
+    clip-path: polygon(110% 55%, -1% 101%, 115% -15%);
 }
 .li:nth-child(4) {
-    transform: rotate(67.5deg) skewY(-67.3deg);
+    clip-path: polygon(100% 100%, -1% 101%, 164% 33%);
 
 }
 .li:nth-child(5) {
-    transform: rotate(90deg) skewY(-59.8deg);
+    top: 50%;
+    clip-path: polygon(100% 0%, 0% 0%, 101% 59%);
 }
 .li:nth-child(6) {
-    transform: rotate(120deg) skewY(-59.8deg);
+    top: 50%;
+    clip-path: polygon(100% 173%, 0% 0%, 101% 59%);
 }
 .li:nth-child(7) {
-    transform: rotate(150deg) skewY(-59.8deg);
+    top: 50%;
+    clip-path: polygon(121% 210%, 0% 0%, 0% 105%);
 }
 .li:nth-child(8) {
-    transform: rotate(180deg) skewY(-67.3deg);
+    top: 50%;
+    left: 0;
+    clip-path: polygon(100% 0%, 37% 152%, 100% 197%);
 }
 .li:nth-child(9) {
-    transform: rotate(202.5deg) skewY(-67.3deg);
+    top: 50%;
+    left: 0;
+    clip-path: polygon(100% 0%, -51% 152%, 18% 197%);
 }
 .li:nth-child(10) {
-    transform: rotate(225deg) skewY(-67.3deg);
+    top: 50%;
+    left: 0;
+    clip-path: polygon(100% 0%, -51% 152%, -16% 48%);
 }
 .li:nth-child(11) {
-    transform: rotate(247.5deg) skewY(-67.3deg);
+    top: 50%;
+    left: 0;
+    clip-path: polygon(100% 0%, -53% 0%, -16% 48%);
 }
 .li:nth-child(12) {
-    transform: rotate(270deg) skewY(-67.3deg);
+    left: 0;
+    clip-path: polygon(0% 58%, 100% 100%, -6% 100%);
 }
 .li:nth-child(13) {
-    transform: rotate(292.5deg) skewY(-67.3deg);
+    left: 0;
+    clip-path: polygon(0% 0%, 100% 100%, -4% 57%);
 }
 .li:nth-child(14) {
-    transform: rotate(315deg) skewY(-67.3deg);
+    left: 0;
+    clip-path: polygon(59% 0%, 100% 100%, -4% -4%);
 }
 .li:nth-child(15) {
-    transform: rotate(337.5deg) skewY(-67.6deg);
+    left: 0;
+    clip-path: polygon(59% 0%, 100% 100%, 100% 0%);
 }
 
+.li:first-child div.not-active p, .li:first-child div.active p{
+    margin-left: 15%;
+    margin-top: 0%;
+}
 
 .li:nth-child(2) div.not-active p, .li:nth-child(2) div.active p{
-    transform: rotate(-22.5deg);
+    margin-left: 49%;
+    margin-top: 8%;
 }
 
 .li:nth-child(3) div.not-active p, .li:nth-child(3) div.active p{
-    transform: rotate(-45deg);
+    margin-left: 72%;
+    margin-top: 21%;
 }
 
 .li:nth-child(4) div.not-active p, .li:nth-child(4) div.active p{
-    transform: rotate(-67.5deg);
+    margin-left: 84%;
+    margin-top: 36%;
 }
 
 .li:nth-child(5) div.not-active p, .li:nth-child(5) div.active p{
-    transform: rotate(-90deg);
-    padding-right: 5%;
+    margin-left: 77%;
 }
 
 .li:nth-child(6) div.not-active p, .li:nth-child(6) div.active p{
-    transform: rotate(-120deg);
+    margin-left: 64%;
+    margin-top: 24%;
 }
 
 .li:nth-child(7) div.not-active p, .li:nth-child(7) div.active p{
-    transform: rotate(-150deg);
+    margin-top: 38%;
+    margin-left: 21%;
 }
 
 .li:nth-child(8) div.not-active p, .li:nth-child(8) div.active p{
-    transform: rotate(-180deg);
+    margin-top: 38%;
+    margin-left: 83%;
 }
 
 .li:nth-child(9) div.not-active p, .li:nth-child(9) div.active p{
-    transform: rotate(-202.5deg);
+    margin-top: 30%;
+    margin-left: 51%;
 }
 
 .li:nth-child(10) div.not-active p, .li:nth-child(10) div.active p{
-    transform: rotate(-225deg);
-    overflow: visible;
-    padding-bottom: 2%;
+    margin-top: 16%;
+    margin-left: 32%;
 }
 
 .li:nth-child(11) div.not-active p, .li:nth-child(11) div.active p{
-    transform: rotate(-247.5deg);
+    margin-top: 3%;
+    margin-left: 13%;
 }
 
 .li:nth-child(12) div.not-active p, .li:nth-child(12) div.active p{
-    transform: rotate(-270deg);
+    margin-top: 36%;
+    margin-left: 16%;
 }
 
 .li:nth-child(13) div.not-active p, .li:nth-child(13) div.active p{
-    transform: rotate(-292.5deg);
+    margin-top: 21%;
+    margin-left: 30%;
 }
 
 .li:nth-child(14) div.not-active p, .li:nth-child(14) div.active p{
-    transform: rotate(-315deg);
+    margin-top: 8%;
+    margin-left: 50%;
 }
 
 .li:nth-child(15) div.not-active p, .li:nth-child(15) div.active p{
-    transform: rotate(-337.5deg);
-}
-
-.li:first-child .ext-p, .li:nth-child(2) .ext-p, .li:nth-child(3) .ext-p, .li:nth-child(4) .ext-p{
-    transform: rotate(-12deg);
-
-}
-
-.li:nth-child(5) .ext-p, .li:nth-child(6) .ext-p, .li:nth-child(7) .ext-p{
-    transform: rotate(-12deg);
-}
-
-.li:nth-child(8) .ext-p, .li:nth-child(9) .ext-p, .li:nth-child(10) .ext-p, .li:nth-child(11) .ext-p{
-    transform: rotate(-12deg);
-}
-
-.li:nth-child(12) .ext-p, .li:nth-child(13) .ext-p, .li:nth-child(14) .ext-p, .li:nth-child(15) .ext-p{
-    transform: rotate(-12deg) ;
-
-}
-
-.li:first-child .not-active, .li:nth-child(2) .not-active, .li:nth-child(3) .not-active, .li:nth-child(4) .not-active,
-.li:nth-child(8) .not-active, .li:nth-child(9) .not-active, .li:nth-child(10) .not-active, .li:nth-child(11) .not-active,
-.li:nth-child(12) .not-active, .li:nth-child(13) .not-active, .li:nth-child(14) .not-active, .li:nth-child(15) .not-active {
-    transform:  skewY(67.3deg) rotate(12deg);
-}
-
-.li:first-child .active, .li:nth-child(2) .active, .li:nth-child(3) .active, .li:nth-child(4) .active,
-.li:nth-child(8) .active, .li:nth-child(9) .active, .li:nth-child(10) .active, .li:nth-child(11) .active,
-.li:nth-child(12) .active, .li:nth-child(13) .active, .li:nth-child(14) .active, .li:nth-child(15) .active {
-    transform:  skewY(67.3deg) rotate(12deg);
-}
-
-.li:nth-child(5) .not-active, .li:nth-child(6) .not-active, .li:nth-child(7) .not-active,
-.li:nth-child(5) .active, .li:nth-child(6) .active, .li:nth-child(7) .active{
-    transform:  skewY(59.8deg) rotate(12deg);
+    margin-left: 83%;
+    margin-top: 0%;
 }
 
 .active{
@@ -259,22 +265,24 @@ div.active,  div.not-active{
 }
 
 .hr, .hrv{
-    border: 0.1px solid black;
     position: absolute;
     width: 42vw;
+    height: 1px;
+    background-color: black;
 }
 
 .hrv{
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1);
 }
 
-#neutrale.active, #neutrale.not-active, div[id^='neutrale['], div[id*=' neutrale[']{
+
+.li#neutr{
+    clip-path: none;
     position: absolute;
     border: 1px solid black;
-    left: auto;
     width: 3vw;
     height: 3vw;
-    transform: skewY(0deg) rotate(0deg);
+    transform: unset;
     padding-top: 0;
     border-radius: 50%;
     background-color: lightgray;
@@ -282,11 +290,21 @@ div.active,  div.not-active{
     cursor: pointer;
     padding-bottom: 2vw;
     margin: 0;
+    box-sizing: border-box;
+    top: auto;
+    left: 46.9%;
+}
+
+.li#neutr .not-active{
+    width: 100%;
+    height: 100%;
+    left: auto;
 }
 
 div[id^='neutrale['].active, div[id*=' neutrale['].active{
     background-color: black;
     opacity: 1;
+    border-radius: unset;
 }
 
 @media (max-width: 800px) {
@@ -301,14 +319,6 @@ div[id^='neutrale['].active, div[id*=' neutrale['].active{
     .hr, .hrv{
         width: 62vw;
     }
-    div[id^='neutrale'], div[id*=' neutrale']{
-        width: 3vw;
-        height: 3vw;
-    }
-    #neutrale.active, #neutrale.not-active{
-        width: 3vw;
-        height: 3vw;
-    }
 
     #pleasant{
         right: 9%;
@@ -316,6 +326,27 @@ div[id^='neutrale['].active, div[id*=' neutrale['].active{
     #unpleasant{
         left: 7%;
     }
+
+    .li#neutr{
+        clip-path: none;
+        position: absolute;
+        border: 1px solid black;
+        width: 5vw;
+        height: 5vw;
+        transform: unset;
+        padding-top: 0;
+        border-radius: 50%;
+        background-color: lightgray;
+        z-index: 1;
+        cursor: pointer;
+        padding-bottom: 2vw;
+        margin: 0;
+        box-sizing: inherit;
+        top: auto;
+        left: 47.4%;
+    }
+
+
 }
 
 .fa.fa-asterisk{

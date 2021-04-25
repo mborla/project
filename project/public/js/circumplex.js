@@ -1,8 +1,7 @@
 $(document).ready(function() {
     $("head").append($('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">'));
     show_model();
-    $("div.not-active").click(active);
-    $("div.active").click(active);
+    $(".li").click(active);
     var ob=new MutationObserver(function () {
         var actives= document.getElementsByClassName("active");
         i=0;
@@ -25,7 +24,6 @@ $(document).ready(function() {
             }
             ob.disconnect();
         }
-
     });
     var obs= document.getElementsByClassName("li");
     var i=0;
@@ -33,6 +31,35 @@ $(document).ready(function() {
         ob.observe(obs[i].firstElementChild, { attributes: true, attributeFilter: ["class"]});
         i++;
     }
+
+    /*
+
+        var resizeId;
+        var resizeId2;
+        $(window).resize(function() {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(doneResizing, 500);
+            resizeId2 = setTimeout(doneResizing2, 0);
+        });
+
+        function doneResizing2() {
+            var circle= document.getElementById("circle");
+            var height=circle.getAttribute("height");
+            var width=circle.getAttribute("width");
+            circle.style.width=width;
+            circle.style.height=height;
+        }
+
+        function doneResizing(){
+            var circle= document.getElementById("circle");
+            circle.style.width="40vw";
+            circle.style.height="40vw";
+        }
+
+     */
+
+
+
 
 });
 
@@ -43,7 +70,7 @@ function emotion(array) {
     }
     var res= $("<div class=\"circle\"></div>");
     array.forEach(element => {
-        res.append($("<div class='li'> <div class=\"not-active\" id="+element+"><div class='ext-p'> <p>"+element+"</p></div> </div> </div>"));
+        res.append($("<div class='li'> <div class=\"not-active\" id="+element+"><div class='ext-p'> <p><label>"+element+"</label></p></div> </div> </div>"));
     });
     return res;
 
@@ -55,7 +82,7 @@ function show_model() {
     var res= $('<div id="circle"></div>');
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
-    var res3= $('<div class="not-active" id="neutrale" title="Neutral"></div>');
+    var res3= $('<div class="li" id="neutr"><div class="not-active" id="neutrale" title="Neutral"></div></div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);
@@ -69,16 +96,17 @@ function show_model() {
 }
 
 function active() {
+    var child= this.firstElementChild;
     var cordX;
     var cordY;
     var offset = $("#circle").offset();
-    var x = (((((event.pageX - (offset.left)) / $("#circle").width() * 10000)/100))-49);
-    var y = (-((((event.pageY - offset.top) / $("#circle").height() * 10000)/100))+49);
+    var x = (((((event.pageX - (offset.left)) / $("#circle").width() * 10000)/100))-50);
+    var y = (-((((event.pageY - offset.top) / $("#circle").height() * 10000)/100))+50);
     cordX=x;
     cordY=y;
-    var e = document.getElementById(this.id);
-    if(this.className==="not-active"){
-        this.className="active";
+    var e = document.getElementById(child.id);
+    if(child.className==="not-active"){
+        child.className="active";
         if(e.id === "neutrale"){
             var f = document.getElementsByClassName("active");
             var i=0;
@@ -95,15 +123,15 @@ function active() {
             while (i<temp.length){
                 temp.item(0).remove();
             }
-            this.className="active";
-            e.id = this.id+"[0,0]";
+            child.className="active";
+            e.id = child.id+"[0,0]";
         }else{
-            var id= "icon-"+this.id;
+            var id= "icon-"+child.id;
             var icon= $("<i class=\"fa fa-asterisk\" id="+id+" aria-hidden=\"true\"></i>");
             $(".circle").append(icon);
             with(document.getElementById(id)) {
                 style.position= "absolute";
-                style.right = (49-(cordX))+"%";
+                style.right = (48-(cordX))+"%";
                 style.top = 48-(cordY)+"%";
             }
             var n= document.getElementById("neutrale[0,0]");
@@ -114,16 +142,18 @@ function active() {
                     n.className="not-active"
                 }
             }
-            this.className="active";
-            e.id = this.id+"["+(cordX)+", "+ (cordY)+"]";
+            child.className="active";
+            e.id = child.id+"["+cordX+", "+ cordY+"]";
         }
     }else{
 
-        var e = document.getElementById(this.id);
-        e.id = this.id.split("[")[0];
-        var id= "icon-"+this.id;
+        var e = document.getElementById(child.id);
+        e.id = child.id.split("[")[0];
+        var id= "icon-"+child.id;
         var rem=document.getElementById(id);
-        rem.remove();
-        this.className="not-active";
+        if(rem){
+            rem.remove();
+        }
+        child.className="not-active";
     }
 }
