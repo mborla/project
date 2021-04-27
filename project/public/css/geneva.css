@@ -4,12 +4,14 @@
     align-items: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 1.5vw;
-    text-anchor: middle;
     fill: #000;
     font-weight: 300;
-    height: 50%;
-    margin-top: 7vh;
-
+    height: auto;
+    margin-top: 8vh;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    user-select: none;
+    transition: all .1s linear;
 }
 
 #ext_circle{
@@ -33,8 +35,8 @@
 #texture{
     position: absolute;
     content: '';
-    height: 45vw;
-    width: 110%;
+    height: 44vw;
+    width: 108%;
     text-align: center;
     display: inline-flex;
     overflow: hidden;
@@ -42,8 +44,8 @@
 
 #circle{
     content: '';
-    height: 35vw;
-    width: 35vw;
+    height: 33vw;
+    width: 33vw;
     text-align: center;
     display: inline-flex;
 }
@@ -69,6 +71,7 @@
 
 #texture .li{
     overflow: visible;
+    clip-path: none;
 }
 
 
@@ -783,14 +786,14 @@ div[id^='neutrale['].active, div[id*=' neutrale['].active{
 }
 
 @media (max-width: 800px) {
-    #circle, #texture{
+    #circle{
         margin: 0;
-        height: 60vw;
-        width: 60vw;
+        height: 58vw;
+        width: 58vw;
     }
     #texture{
         margin: 0;
-        height: 78vw;
+        height: 77vw;
         width: 105%;
         font-size: 2.5vw;
     }

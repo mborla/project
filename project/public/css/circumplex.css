@@ -7,12 +7,12 @@
     text-anchor: middle;
     fill: #000;
     font-weight: 300;
-    height: 50%;
     margin-top: 3em;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     user-select: none;
     transition: all .1s linear;
+    height: auto;
 }
 
 #ext_circle{
