@@ -49,6 +49,18 @@
         </div>
     </div>
 
+@if($config['progress'] == 'true') <!-- se è true dal file di conf visualizzo il numero del tweet che sto annotando e il numero totale di tweets annotati-->
+    <div id="progress">
+        @if(isset($total) && isset($progress))
+            <a>Annotations of the project: {{$progress}}/{{$total}}</a>
+            <br>
+        @endif
+        @if(isset($day_annotation))
+            <a>Total annotations of the day: {{$day_annotation}} </a>
+        @endif
+    </div>
+@endif
+
 </div>
 
 <script>

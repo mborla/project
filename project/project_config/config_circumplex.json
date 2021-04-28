@@ -4,6 +4,9 @@
     "num_annotators": 1,
     "num_annotation": 1,
     "repetition": "true",
+    "dataset_headerLine": "true",
+    "dataset_separator": ",",
+    "progress": "true",
     "extra": "true",
     "layout": {
         "col_1": {

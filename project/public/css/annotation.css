@@ -41,6 +41,12 @@ body {
     padding-top: 0;
 }
 
+#progress{
+    width: 100%;
+    float: right;
+    text-align: center;
+}
+
 #multimedia img{
     width: 30%;
 }

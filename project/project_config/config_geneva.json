@@ -5,6 +5,9 @@
     "num_annotation": 1,
     "repetition": "true",
     "extra": "true",
+    "dataset_headerLine": "true",
+    "dataset_separator": ",",
+    "progress": "true",
     "layout": {
         "col_1": {
             "model": {
