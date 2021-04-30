@@ -67,6 +67,7 @@
     left: -5%;
     transform: rotate(-90deg);
     margin: 0;
+    z-index: 2;
 }
 #unpleasant p{
     margin: 0;
@@ -78,6 +79,7 @@
     right: -3%;
     transform: rotate(90deg);
     margin: 0;
+    z-index: 2;
 }
 
 #pleasant p{
