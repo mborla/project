@@ -1,5 +1,5 @@
 {
-    "user": "Debora",
+    "user": "Debora Conti",
     "num_tweet": 12,
     "num_annotators": 1,
     "num_annotation": 1,
@@ -8,6 +8,7 @@
     "dataset_headerLine": "true",
     "dataset_separator": ",",
     "progress": "true",
+    "name": "Geneva",
     "layout": {
         "col_1": {
             "model": {
@@ -43,9 +44,7 @@
             "block": {
                 "flag": "false",
                 "by": {
-                    "incomprehensible": "incomprehensible",
-                    "neutral": "neutral",
-                    "neutrale": "neutrale[0,0]"
+                    "incomprehensible": "incomprehensible"
                 }
             }
         },
@@ -97,21 +96,20 @@
                 }
             },
             "row_2": {
-                "header": "neutral",
+                "header": "Other",
                 "buttons": {
-                    "neutral": {
-                        "color": "#6c757d",
-                        "block": {
-                            "flag": "true",
-                            "by": {
-                                "incomprehensible": "incomprehensible"
-                            }
-                        }
-                    },
                     "incomprehensible": {
                         "color": "#ffc107",
                         "block": {
                             "flag": "true",
+                            "by": []
+                        }
+                    },
+                    "": {
+                        "display": "none",
+                        "color": "#f9fafb",
+                        "block": {
+                            "flag": "false",
                             "by": []
                         }
                     }

@@ -79,7 +79,7 @@ class TweetController extends Controller
                 ->where('id_user', $this->id_user)
                 ->distinct()->get()->count();
 
-            return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'progress' => 1, 'total' => $sentences, 'day_annotation' => $total_day_annotation]);
+            return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'progress' => 0, 'total' => $sentences, 'day_annotation' => $total_day_annotation]);
 
         } else {    // altrimenti prendo l'id dell'ultima annotazione fatta il successivo tweet da annotare
 
@@ -108,8 +108,8 @@ class TweetController extends Controller
                 ->select('tweet_user.id')
                 ->where('id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->where('tweet_user.id', '<=', $i)
-                ->distinct()->get()->count();
+                ->where('tweet_user.id', '<', $i)
+                ->distinct()->count();
 
             if($sentence != null){
                 $sentences = DB::table('tweet_user')
@@ -124,7 +124,7 @@ class TweetController extends Controller
                     ->whereBetween(('create_at'), [today()->format('y-m-d').' 00:00:00', today()->format('y-m-d').' 23:59:59'])
                     ->where('id_user', $this->id_user)
                     ->distinct()->get()->count();
-                return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'progress' => $progress+1, 'total' => $sentences, 'day_annotation' => $total_day_annotation]);
+                return view('annotation', ['sentence' => $sentence->sentence, 'id' => $sentence->id, 'progress' => $progress, 'total' => $sentences, 'day_annotation' => $total_day_annotation]);
             }else{
                 return view('info', ['info' => 'Finish', 'last_id' => $last_annotation_id]);
             }
@@ -167,15 +167,15 @@ class TweetController extends Controller
                 ->select('tweet_user.id', 'sentence')
                 ->where('id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->orderBy('tweet_user.id')->get()->count();
+                ->orderBy('tweet_user.id')->count();
 
             $progress = DB::table('tweets')
                 ->join('tweet_user', 'tweets.id', '=', 'tweet_user.id_tweet')
                 ->select('tweet_user.id')
                 ->where('tweets.id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->where('tweet_user.id', '<=', $id_next_tweet)
-                ->distinct()->get()->count();
+                ->where('tweet_user.id', '<', $id_next_tweet)
+                ->distinct()->count();
 
             $total_day_annotation = DB::table('annotations')
                 ->select('id_user','id_tweet_user')
@@ -200,7 +200,7 @@ class TweetController extends Controller
                 ->select('tweet_user.id', 'sentence')
                 ->where('id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->orderBy('tweet_user.id')->get()->count();
+                ->orderBy('tweet_user.id')->count();
 
             if($sentence != null){
                 $progress = DB::table('tweets')
@@ -208,8 +208,8 @@ class TweetController extends Controller
                     ->select('tweet_user.id')
                     ->where('tweets.id_project', $id_project)
                     ->where('tweet_user.id_user', $this->id_user)
-                    ->where('tweet_user.id', '<=', $sentence->id)
-                    ->distinct()->get()->count();
+                    ->where('tweet_user.id', '<', $sentence->id)
+                    ->distinct()->count();
 
                 $total_day_annotation = DB::table('annotations')
                     ->select('id_user','id_tweet_user')
@@ -266,15 +266,15 @@ class TweetController extends Controller
                 ->select('tweet_user.id', 'sentence')
                 ->where('id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->orderBy('tweet_user.id')->get()->count();
+                ->orderBy('tweet_user.id')->count();
 
             $progress = DB::table('tweets')
                 ->join('tweet_user', 'tweets.id', '=', 'tweet_user.id_tweet')
                 ->select('tweet_user.id')
                 ->where('tweets.id_project', $id_project)
                 ->where('tweet_user.id_user', $this->id_user)
-                ->where('tweet_user.id', '<=', $sentence->id)
-                ->distinct()->get()->count();
+                ->where('tweet_user.id', '<', $sentence->id)
+                ->distinct()->count();
 
             $total_day_annotation = DB::table('annotations')
                 ->select('id_user','id_tweet_user')
@@ -320,15 +320,15 @@ class TweetController extends Controller
             ->select('tweet_user.id', 'sentence')
             ->where('id_project', $id_project)
             ->where('tweet_user.id_user', $this->id_user)
-            ->orderBy('tweet_user.id')->get()->count();
+            ->orderBy('tweet_user.id')->count();
 
         $progress = DB::table('tweets')
             ->join('tweet_user', 'tweets.id', '=', 'tweet_user.id_tweet')
             ->select('tweet_user.id')
             ->where('tweets.id_project', $id_project)
             ->where('tweet_user.id_user', $this->id_user)
-            ->where('tweet_user.id', '<=', $sentence->id)
-            ->distinct()->get()->count();
+            ->where('tweet_user.id', '<', $sentence->id)
+            ->distinct()->count();
 
         $total_day_annotation = DB::table('annotations')
             ->select('id_user','id_tweet_user')

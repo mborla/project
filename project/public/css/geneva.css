@@ -1,6 +1,7 @@
 #model{
     float: none;
     display: inline-flex!important;
+    display: -webkit-inline-flex!important;
     align-items: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: 1.5vw;
@@ -12,12 +13,14 @@
     backface-visibility: hidden;
     user-select: none;
     transition: all .1s linear;
+    -webkit-transition: all .1s linear;
 }
 
 #ext_circle{
     width: 100%;
     height: 100%;
     display: inline-flex;
+    display: -webkit-inline-flex;
 }
 .circle {
     position: relative;
@@ -60,6 +63,7 @@
 
 .li {
     transition: all .3s linear;
+    -webkit-transition: all .3s linear;
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -67,11 +71,13 @@
     width: 50%;
     height: 50%;
     transform-origin: 0% 100%;
+    -webkit-transform-origin: 0% 100%;
 }
 
 #texture .li{
     overflow: visible;
     clip-path: none;
+    -webkit-clip-path: none;
 }
 
 
@@ -79,32 +85,39 @@ div.ext-circle{
     position: absolute;
     left: -100%;
     width: 200%;
-    height: 200%;
     text-align: center;
     border-radius: 50%;
     -moz-border-radius:50%;
     -webkit-border-radius:50%;
-    padding-top: 5%;
+    z-index: 0 !important;
+    margin-top: 190%;
 }
 
 .circle1 .li .ext-circle{
     left: -100%;
+    margin-top: 5%;
 }
 
 .li:first-child, .li:nth-child(10), .li:nth-child(11), .li:nth-child(20) {
     clip-path: polygon(0% 0%, 0% 100%, 50% -53%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 50% -53%);
 }
 .li:nth-child(2), .li:nth-child(9), .li:nth-child(12), .li:nth-child(19) {
     clip-path: polygon(32% 0%, 0% 100%, 100% -38%);
+    -webkit-clip-path: polygon(32% 0%, 0% 100%, 100% -38%);
+
 }
 .li:nth-child(3), .li:nth-child(8), .li:nth-child(13), .li:nth-child(18) {
     clip-path: polygon(100% 28%, 0% 100%, 100% -38%);
+    -webkit-clip-path: polygon(100% 28%, 0% 100%, 100% -38%);
 }
 .li:nth-child(4), .li:nth-child(7), .li:nth-child(14), .li:nth-child(17) {
     clip-path: polygon(100% 28%, 0% 100%, 100% 68%);
+    -webkit-clip-path: polygon(100% 28%, 0% 100%, 100% 68%);
 }
 .li:nth-child(5), .li:nth-child(6), .li:nth-child(15), .li:nth-child(16) {
     clip-path: polygon(100% 68%, 0% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 68%, 0% 100%, 100% 100%);
 }
 
 .li:first-child .not-active5, .li:nth-child(10) .not-active5, .li:nth-child(11) .not-active5, .li:nth-child(20) .not-active5{
@@ -236,18 +249,21 @@ div.ext-circle{
 .li:nth-child(7), .li:nth-child(7) .text, .li:nth-child(6), .li:nth-child(6) .text,
 .li:nth-child(10), .li:nth-child(10) .text{
     transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
 }
 
 .li:nth-child(11), .li:nth-child(11) .text, .li:nth-child(12), .li:nth-child(12) .text,
 .li:nth-child(13), .li:nth-child(13) .text, .li:nth-child(14), .li:nth-child(14) .text,
 .li:nth-child(15), .li:nth-child(15) .text{
     transform: scaleY(-1) scaleX(-1);
+    -webkit-transform: scaleY(-1) scaleX(-1);
 }
 
 .li:nth-child(16), .li:nth-child(16) .text, .li:nth-child(17), .li:nth-child(17) .text,
 .li:nth-child(18), .li:nth-child(18) .text, .li:nth-child(19), .li:nth-child(19) .text,
 .li:nth-child(20), .li:nth-child(20) .text{
     transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
 }
 
 .li:nth-child(2) .text{
@@ -762,12 +778,11 @@ div.ext-circle{
 
 
 
-#neutrale.active, #neutrale.not-active, div[id^='neutrale['], div[id*=' neutrale[']{
+#neutral.active, #neutral.not-active, div[id^='neutral['], div[id*=' neutral[']{
     position: absolute;
     left: auto;
     width: 3vw;
     height: 3vw;
-    transform: skewY(0deg) rotate(0deg);
     padding-top: 0;
     border-radius: 50%;
     -moz-border-radius:50%;
@@ -780,7 +795,7 @@ div.ext-circle{
     box-sizing: border-box;
 }
 
-div[id^='neutrale['].active, div[id*=' neutrale['].active{
+div[id^='neutral['].active, div[id*=' neutral['].active{
     background-color: black;
     opacity: 1;
 }
@@ -810,11 +825,11 @@ div[id^='neutrale['].active, div[id*=' neutrale['].active{
         height: 62vw;
         background-color: black;
     }
-    div[id^='neutrale'], div[id*=' neutrale']{
+    div[id^='neutral'], div[id*=' neutral']{
         width: 3vw;
         height: 3vw;
     }
-    #neutrale.active, #neutrale.not-active{
+    #neutral.active, #neutral.not-active{
         width: 3vw;
         height: 3vw;
     }
@@ -941,15 +956,15 @@ div[id^='neutrale['].active, div[id*=' neutrale['].active{
 }
 
 .not-active, .active{
-    width: 100%;
+    width: 101%;
     height:0;
-    padding-bottom: 100%;
+    padding-bottom: 101%;
     border-radius: 50%;
     -moz-border-radius:50%;
     -webkit-border-radius:50%;
     overflow:hidden;
-    background: #4679BD;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .active{

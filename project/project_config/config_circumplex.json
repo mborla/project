@@ -1,13 +1,14 @@
 {
-    "user": "Debora",
+    "user": "Debora Conti",
     "num_tweet": 12,
     "num_annotators": 1,
     "num_annotation": 1,
     "repetition": "true",
-    "dataset_headerLine": "true",
+    "dataset_headerLine": "false",
     "dataset_separator": ",",
     "progress": "true",
     "extra": "true",
+    "name": "Circumplex",
     "layout": {
         "col_1": {
             "model": {
@@ -43,9 +44,7 @@
             "block": {
                 "flag": "false",
                 "by": {
-                    "incomprehensible": "incomprehensible",
-                    "neutral": "neutral",
-                    "neutrale": "neutrale"
+                    "incomprehensible": "incomprehensible"
                 }
             }
         },
@@ -99,19 +98,18 @@
             "row_2": {
                 "header": "Other",
                 "buttons": {
-                    "neutral": {
-                        "color": "#6c757d",
-                        "block": {
-                            "flag": "true",
-                            "by": {
-                                "incomprehensible": "incomprehensible"
-                            }
-                        }
-                    },
                     "incomprehensible": {
                         "color": "#ffc107",
                         "block": {
                             "flag": "true",
+                            "by": []
+                        }
+                    },
+                    "": {
+                        "display": "none",
+                        "color": "#f9fafb",
+                        "block": {
+                            "flag": "false",
                             "by": []
                         }
                     }

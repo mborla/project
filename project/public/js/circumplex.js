@@ -31,36 +31,6 @@ $(document).ready(function() {
         ob.observe(obs[i].firstElementChild, { attributes: true, attributeFilter: ["class"]});
         i++;
     }
-
-    /*
-
-        var resizeId;
-        var resizeId2;
-        $(window).resize(function() {
-            clearTimeout(resizeId);
-            resizeId = setTimeout(doneResizing, 500);
-            resizeId2 = setTimeout(doneResizing2, 0);
-        });
-
-        function doneResizing2() {
-            var circle= document.getElementById("circle");
-            var height=circle.getAttribute("height");
-            var width=circle.getAttribute("width");
-            circle.style.width=width;
-            circle.style.height=height;
-        }
-
-        function doneResizing(){
-            var circle= document.getElementById("circle");
-            circle.style.width="40vw";
-            circle.style.height="40vw";
-        }
-
-     */
-
-
-
-
 });
 
 function emotion(array) {
@@ -70,7 +40,7 @@ function emotion(array) {
     }
     var res= $("<div class=\"circle\"></div>");
     array.forEach(element => {
-        res.append($("<div class='li'> <div class=\"not-active\" id="+element+"><div class='ext-p'> <p><label>"+element+"</label></p></div> </div> </div>"));
+        res.append($("<div class='li'> <div class=\"not-active\" id="+element+"><p><label>"+element+"</label></p></div></div>"));
     });
     return res;
 
@@ -82,7 +52,7 @@ function show_model() {
     var res= $('<div id="circle"></div>');
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
-    var res3= $('<div class="li" id="neutr"><div class="not-active" id="neutrale" title="Neutral"></div></div>');
+    var res3= $('<div class="li" id="neutr"><div class="not-active" id="neutral" title="Neutral"></div></div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);
@@ -107,22 +77,12 @@ function active() {
     var e = document.getElementById(child.id);
     if(child.className==="not-active"){
         child.className="active";
-        if(e.id === "neutrale"){
-            var f = document.getElementsByClassName("active");
-            var i=0;
-            while(i<f.length){
-                if(f.item(0).id !== "neutrale"){
-                    f.item(0).id =  f.item(0).id.split("[")[0];
-                    (f.item(0)).classList.add("not-active");
-                    f.item(0).classList.remove("active");
-                }else{
-                    f.item(0).classList.remove("active");
-                }
-            }
-            var temp=document.getElementsByClassName("fa fa-asterisk");
-            while (i<temp.length){
-                temp.item(0).remove();
-            }
+        if(e.id === "neutral"){
+            d3.select('.container-fluid').selectAll(".active").attr('id', function(d, i) {
+                return d3.select(this).attr('id').split('[')[0];
+            });
+            d3.select('.container-fluid').selectAll(".active").attr("class", "not-active").property('checked', false);
+            d3.select('.container-fluid').selectAll(".fa-asterisk").remove();
             child.className="active";
             e.id = child.id+"[0,0]";
         }else{
@@ -134,10 +94,10 @@ function active() {
                 style.right = (48-(cordX))+"%";
                 style.top = 48-(cordY)+"%";
             }
-            var n= document.getElementById("neutrale[0,0]");
+            var n= document.getElementById("neutral[0,0]");
             if(n){
                 if (n.className === "active"){
-                    n.id= "neutrale";
+                    n.id= "neutral";
                     n.className= "";
                     n.className="not-active"
                 }

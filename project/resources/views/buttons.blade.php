@@ -10,6 +10,7 @@
                 @endisset
 
                 @foreach($config['grammar']['category'][$category]['buttons'] as $button => $button)
+                    @if($button != "")
                     <div class="col" id="col_added">
                         <!-- bottoni es. ironia, sarcasmo, odio.. -->
                         <input type="checkbox" name="{{ $button }}" id="{{ $button }}" value="{{ $config['grammar']['category'][$category]['buttons'][$button]['block']['flag'] }}" class="not-active">
@@ -25,6 +26,11 @@
                             color: white;
                         }
                     </style>
+                    @else
+                        <div class="col" id="col_added">
+                            <!-- bottoni es. ironia, sarcasmo, odio.. -->
+                        </div>
+                    @endif
                 @endforeach
             </div>
 
@@ -48,18 +54,17 @@
             </form>
         </div>
     </div>
-
-@if($config['progress'] == 'true') <!-- se è true dal file di conf visualizzo il numero del tweet che sto annotando e il numero totale di tweets annotati-->
+    @if($config['progress'] == 'true') <!-- se è true dal file di conf visualizzo il numero del tweet che sto annotando e il numero totale di tweets annotati-->
     <div id="progress">
-        @if(isset($total) && isset($progress))
-            <a>Annotations of the project: {{$progress}}/{{$total}}</a>
+        @if(isset($day_annotation))
+            <a>Today you have annotated {{$day_annotation}} tweets </a>
             <br>
         @endif
-        @if(isset($day_annotation))
-            <a>Total annotations of the day: {{$day_annotation}} </a>
+        @if(isset($total) && isset($progress))
+            <a>In total you have annotated {{$progress}} tweets of {{$total}}</a>
         @endif
     </div>
-@endif
+    @endif
 
 </div>
 
@@ -71,6 +76,10 @@
         var flag = $(this).attr("value");
 
         if($(this).attr("class") === "not-active"){
+            if(document.getElementById("neutral[0,0]")){
+                document.getElementById("neutral[0,0]").setAttribute("class", "not-active");
+                document.getElementById("neutral[0,0]").setAttribute("id", "neutral");
+            }
 
             $(this).attr("class", "active").prop('checked', true);
 

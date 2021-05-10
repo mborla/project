@@ -28,7 +28,7 @@ function show_model() {
     var res= $('<div id="circle"></div>');
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
-    var res3= $('<div class="not-active" id="neutrale" title="Neutral"></div>');
+    var res3= $('<div class="not-active" id="neutral" title="Neutral"></div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);
@@ -54,26 +54,19 @@ function active() {
     cordY=y;
     var e = document.getElementById(this.id);
     if(this.className==="not-active"){
-        if(e.id === "neutrale"){
-            this.className="active";
-            var f = document.getElementsByClassName("active");
-            var i=0;
-            while(i<f.length){
-                if(f.item(0).id !== "neutrale"){
-                    f.item(0).id =  f.item(0).id.split("[")[0];
-                    (f.item(0)).classList.add("not-active");
-                    f.item(0).classList.remove("active");
-                }else{
-                    f.item(0).classList.remove("active");
-                }
-            }
+
+        if(e.id === "neutral"){
+            d3.select('.container-fluid').selectAll(".active").attr('id', function(d, i) {
+                return d3.select(this).attr('id').split('[')[0];
+            });
+            d3.select('.container-fluid').selectAll(".active").attr("class", "not-active").property('checked', false);
             this.className="active";
             e.id = this.id+"[0,0]";
         }else{
-            var n= document.getElementById("neutrale[0,0]");
+            var n= document.getElementById("neutral[0,0]");
             if(n){
                 if (n.className === "active"){
-                    n.id= "neutrale";
+                    n.id= "neutral";
                     n.className= "";
                     n.className="not-active"
                 }
@@ -81,12 +74,14 @@ function active() {
             var i=0;
             while(i<5){
                 var sib=(this.parentNode).parentNode.children.item(i).children.item(0);
-                if(sib.className === "active"){
-                    sib.classList.remove("active");
-                    sib.classList.add("not-active");
-                    sib.id= sib.id.split("[")[0];
+                if(sib){
+                    if(sib.className === "active"){
+                        sib.classList.remove("active");
+                        sib.classList.add("not-active");
+                        sib.id= sib.id.split("[")[0];
+                    }
+                    i++;
                 }
-                i++;
             }
             this.className="active";
             e.id = this.id+"["+cordX+", "+ cordY+"]";
