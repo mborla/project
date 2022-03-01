@@ -29,9 +29,28 @@ function show_model() {
     var res1= $('<div class="hr"></div>');
     var res2= $('<div class="hrv"></div>');
     var res3= $('<div class="not-active" id="neutral" title="Neutral"></div>');
+    var modal= $("<div id=\"myModal\" class=\"modal\">\n" +
+        "\n" +
+        "  <!-- Modal content -->\n" +
+        "  <div class=\"modal-content\">\n" +
+        "    <div class=\"modal-header\">Enter emotion\n" +
+        "      <span class=\"close\">&times;</span>\n" +
+        "    </div>\n" +
+        "    <div class=\"modal-body\">\n" +
+        "    <input type='text' id='emotionText' maxlength=\"20\"> " +
+        "    <div id='modalButton'><button id='deleteEmotion'>Delete</button> " +
+        "    <button id='submitEmotion'>conferma</button></div>" +
+        "    </div>\n" +
+        "    " +
+        "  </div>\n" +
+        "\n" +
+        "</div>\n");
+    var res4= $('<div class="not-active" id="other" title="other">Other</div>');
     $("#model").append(res1);
     $("#model").append(res2);
     $("#model").append(res3);
+    $("#model").append(modal);
+    $("#model").append(res4);
     $("#model").append(res);
     var text=  $("<div id=\"texture\"></div>");
     var circle1= $("<div class='circle1'></div>");
@@ -43,7 +62,11 @@ function show_model() {
     res.append(emotion(emotion1));
     $("#model").append(res);
 }
-
+/*
+d3.select('#model').selectAll(".active").attr("class", "not-active");
+d3.selectAll('.text_active').attr("class", "text_not-active");
+$('#model').css("pointer-events", "none");
+*/
 function active() {
     var cordX;
     var cordY;
@@ -53,8 +76,43 @@ function active() {
     cordX=x;
     cordY=y;
     var e = document.getElementById(this.id);
-    if(this.className==="not-active"){
+    if(this.className==="not-active" && this.id === 'other'){
+        document.getElementById('emotionText').value = "";
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        var button = document.getElementById("submitEmotion");
+        button.onclick = function(){
+            var text = document.getElementById('emotionText').value;
+            var e = document.getElementById("other");
+            e.id = e.id + '[' +text + ']';
+            e.className="active";
+            modal.style.display = "none";
+            var n= document.getElementById("neutral[0,0]");
+            if(n){
+                if (n.className === "active"){
+                    n.id= "neutral";
+                    n.className= "";
+                    n.className="not-active"
+                }
+            }
+        }
+        document.getElementById('deleteEmotion').onclick = function () {
+            document.getElementById("emotionText").value = "";
+            document.getElementById("myModal").style.display = "none";
+            e.id = "other";
+            e.className = "not-active";
+        }
+        modal.style.display = "block";
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
+    }else if(this.className==="not-active"){
         if(e.id === "neutral"){
             d3.select('.container-fluid').selectAll(".active").attr('id', function(d, i) {
                 return d3.select(this).attr('id').split('[')[0];
@@ -87,8 +145,46 @@ function active() {
             e.id = this.id+"["+cordX+", "+ cordY+"]";
         }
     }else{
-        var e = document.getElementById(this.id);
-        e.id = this.id.split("[")[0];
-        this.className="not-active";
+        if(this.id.split("[")[0] === "other"){
+            document.getElementById('deleteEmotion').onclick = function () {
+                document.getElementById("emotionText").value = "";
+                document.getElementById("myModal").style.display = "none";
+                e.id = "other";
+                e.className = "not-active";
+            }
+            var emotion = this.id.split("[")[1];
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            var button = document.getElementById("submitEmotion");
+            var text = document.getElementById('emotionText');
+            var other = document.getElementById(this.id);
+            text.value = emotion.split("]")[0];
+            button.onclick = function(){
+                var text = document.getElementById('emotionText').value;
+                if(text ===""){
+                    other.id = "other";
+                    other.className = "not-active";
+                }else{
+                    other.id = 'other[' +text + ']';
+                    e.className="active";
+                }
+                modal.style.display = "none";
+            }
+            modal.style.display = "block";
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+        }else{
+            var e = document.getElementById(this.id);
+            e.id = this.id.split("[")[0];
+            this.className="not-active";
+        }
+
     }
 }
